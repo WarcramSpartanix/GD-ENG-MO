@@ -104,6 +104,7 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="CamIcon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -186,6 +187,7 @@
     </ClInclude>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="CamIcon.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

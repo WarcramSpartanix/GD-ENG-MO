@@ -26,7 +26,7 @@ public:
 
 	Vector3D getForwardVector();
 
-private:
+protected:
 	virtual void updateVertexLocations() override;
 
 	float moveForward = 0.0f;
