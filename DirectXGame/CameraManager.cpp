@@ -25,15 +25,17 @@ Camera* CameraManager::getSceneCamera()
     return nullptr;
 }
 
-Camera* CameraManager::getActiveCamera()
+Camera** CameraManager::getActiveCameraAddress()
 {
-	return m_active_camera;
+	return &m_active_camera;
 }
 
 void CameraManager::update()
 {
 	if (m_scene_camera != nullptr)
 		m_scene_camera->update(EngineTime::getDeltaTime());
+	if (m_game_camera != nullptr)
+		m_game_camera->update(EngineTime::getDeltaTime());
 
 	if (m_camera_toggle)
 	{
@@ -49,7 +51,15 @@ void CameraManager::update()
 			InputSystem::getInstance()->addListener(m_scene_camera);
 			InputSystem::getInstance()->removeListener(m_game_camera);
 		}
+		m_camera_toggle = false;
 	}
+}
+
+void CameraManager::drawGameCamera(ConstantBuffer* cb)
+{
+	/*
+		m_game_camera->draw(cb);
+	*/
 }
 
 Matrix4x4 CameraManager::getCameraViewMatrix()
@@ -63,9 +73,12 @@ void CameraManager::onKeyDown(int key)
 
 void CameraManager::onKeyUp(int key)
 {
+
+
 	if (key == '\t')//tab
 	{
 		m_camera_toggle = !m_camera_toggle;
+		
 	}
 }
 
@@ -91,6 +104,8 @@ void CameraManager::onRightMouseUp(const Point& mouse_pos)
 
 CameraManager::CameraManager()
 {
+	InputSystem::getInstance()->addListener(this);
+
 	m_scene_camera = new Camera("SceneCamera");
 	InputSystem::getInstance()->addListener(m_scene_camera);
 	

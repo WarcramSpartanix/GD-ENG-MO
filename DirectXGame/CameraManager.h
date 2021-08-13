@@ -1,6 +1,7 @@
 #pragma once
 #include "Camera.h"
 #include "InputListener.h"
+#include "ConstantBuffer.h"
 #include <vector>
 class CameraManager: public InputListener
 {
@@ -11,8 +12,9 @@ public:
 
 
 	Camera* getSceneCamera();
-	Camera* getActiveCamera();
+	Camera** getActiveCameraAddress();
 	void update();
+	void drawGameCamera(ConstantBuffer* cb);
 	Matrix4x4 getCameraViewMatrix();
 
 public:

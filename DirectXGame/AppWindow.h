@@ -57,7 +57,7 @@ private:
 
 	constant cc;
 
-	Camera* cam;
+	Camera** cam;
 
 	std::vector<Cube*> cubes;
 	AnimatedQuad* newQuad;

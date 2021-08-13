@@ -35,12 +35,12 @@ void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 	Vector3D raycastWorld;
 	if (isPerspective)
 	{
-		raycastWorld = Quaternion::rotatePointEuler(raycastEye, cam->getLocalRotation());
+		raycastWorld = Quaternion::rotatePointEuler(raycastEye, (*cam)->getLocalRotation());
 		raycastWorld.normalize();//normalize if we want direction vector for perspective raycast
 	}
 	else
 	{
-		raycastWorld = Quaternion::rotatePointEuler(raycastEye, cam->getLocalRotation());
+		raycastWorld = Quaternion::rotatePointEuler(raycastEye, (*cam)->getLocalRotation());
 	}
 
 	//find if any object collides with the raycast and get the one that is the closest to the raycast origin
@@ -52,9 +52,9 @@ void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 	for (int i = 0; i < cubes.size(); i++)
 	{
 		if (!isPerspective) 
-			t = cubes[i]->checkRaycast(raycastWorld + cam->getLocalPosition() + cam->getForwardVector() * (orthoNearPlane), cam->getForwardVector());
+			t = cubes[i]->checkRaycast(raycastWorld + (*cam)->getLocalPosition() + (*cam)->getForwardVector() * (orthoNearPlane), (*cam)->getForwardVector());
 		else 
-			t = cubes[i]->checkRaycast(cam->getLocalPosition(), raycastWorld);
+			t = cubes[i]->checkRaycast((*cam)->getLocalPosition(), raycastWorld);
 
 		if (t != -9999)
 		{
@@ -101,7 +101,7 @@ void AppWindow::onMouseMove(const Point& delta_mouse_pos)
 	if (selectedCube != nullptr)
 	{
 		Vector3D cubePos = selectedCube->getLocalPosition();
-		Matrix4x4 viewMat = cam->getViewMatrix();
+		Matrix4x4 viewMat = (*cam)->getViewMatrix();
 		Vector3D newPos = cubePos + viewMat.getXDirection() * delta_mouse_pos.x * 0.5f * m_delta_time - 
 							viewMat.getYDirection() * delta_mouse_pos.y * 0.5f * m_delta_time;
 		selectedCube->setPosition(newPos);
@@ -142,6 +142,8 @@ void AppWindow::destroy()
 
 void AppWindow::update()
 {
+	CameraManager::getInstance()->update();
+
 	m_delta_pos += m_delta_time / 10.0f;
 	if (m_delta_pos > 1.0f)
 		m_delta_pos = 0;
@@ -171,9 +173,8 @@ void AppWindow::update()
 	worldCam = new_cam;
 	new_cam.invert();*/
 
-	cam->update(m_delta_time);
 
-	cc.m_view = cam->getViewMatrix();
+	cc.m_view = (*cam)->getViewMatrix();
 	cc.m_view.invert();
 
 	m_cb->update(GraphicsEngine::getInstance()->getImmediateDeviceContext(), &cc);
@@ -184,12 +185,10 @@ void AppWindow::onCreate()
 	Window::onCreate();
 
 	InputSystem::getInstance()->addListener(this);
-	//CameraManager::initialize();
+	cam = CameraManager::getInstance()->getActiveCameraAddress();
 	//InputSystem::getInstance()->showCursor(false);
 
 	cc.m_view.setIdentity();
-	cam = new Camera("Camera");
-	cam->setPosition(0, 0, -2);
 
 	RECT rc = this->getClientWindowRect();
 	int width = rc.right - rc.left;
