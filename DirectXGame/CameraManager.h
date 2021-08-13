@@ -1,5 +1,6 @@
 #pragma once
 #include "Camera.h"
+#include "GameCamera.h"
 #include "InputListener.h"
 #include "ConstantBuffer.h"
 #include <vector>
@@ -37,7 +38,7 @@ private:
 private:
 	Camera* m_scene_camera;
 	Camera* m_active_camera;
-	Camera* m_game_camera;
+	GameCamera* m_game_camera;
 	bool m_camera_toggle = false; // if true, change camera mode
 };
 

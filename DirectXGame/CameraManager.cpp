@@ -109,7 +109,7 @@ CameraManager::CameraManager()
 	m_scene_camera = new Camera("SceneCamera");
 	InputSystem::getInstance()->addListener(m_scene_camera);
 	
-	m_game_camera = new Camera("GameCamera");
+	m_game_camera = new GameCamera("GameCamera");
 
 	m_active_camera = m_scene_camera;
 

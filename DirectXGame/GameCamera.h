@@ -3,6 +3,7 @@
 class GameCamera :
     public Camera
 {
+public:
 	GameCamera(std::string name);
 	~GameCamera();
 
