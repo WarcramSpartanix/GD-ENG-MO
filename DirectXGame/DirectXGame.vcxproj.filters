@@ -37,6 +37,9 @@
     <Filter Include="GameEngine\PhysicsSystem">
       <UniqueIdentifier>{05f8d81a-ac88-4272-b1c6-a53f467a55c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\CameraSystem">
+      <UniqueIdentifier>{bd7e0a36-f6c5-405e-a041-2f408b7c5465}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,7 +99,12 @@
     <ClCompile Include="BoundingSphere.cpp">
       <Filter>GameEngine\PhysicsSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -174,7 +182,12 @@
     <ClInclude Include="BoundingSphere.h">
       <Filter>GameEngine\PhysicsSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraManager.h">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

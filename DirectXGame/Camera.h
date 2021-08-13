@@ -1,6 +1,7 @@
 #pragma once
 #include "AGameObject.h"
 #include "InputListener.h"
+#include "ConstantBuffer.h"
 
 class Camera : public AGameObject, public InputListener
 {

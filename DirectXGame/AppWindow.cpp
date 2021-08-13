@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "GameObjectConstants.h"
 #include "InputSystem.h"
+#include "CameraManager.h"
 #include <iostream>
 #include <random>
 
@@ -183,6 +184,7 @@ void AppWindow::onCreate()
 	Window::onCreate();
 
 	InputSystem::getInstance()->addListener(this);
+	//CameraManager::initialize();
 	//InputSystem::getInstance()->showCursor(false);
 
 	cc.m_view.setIdentity();
