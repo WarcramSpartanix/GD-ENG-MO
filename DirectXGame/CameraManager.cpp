@@ -58,6 +58,23 @@ void CameraManager::update()
 		}
 		m_camera_toggle = false;
 	}
+
+
+	bool ctrl = InputSystem::getInstance()->isKeyDown(16);
+	bool shift = InputSystem::getInstance()->isKeyDown(17);
+	bool F = InputSystem::getInstance()->isKeyDown(70);
+	if (ctrl && shift && F)
+	{
+		if (m_active_camera == m_game_camera)
+		{
+			m_game_camera->setPosition(m_scene_camera->getLocalPosition());
+			m_game_camera->setRotation(m_scene_camera->getLocalRotation());
+		}
+	}
+
+
+
+
 }
 
 void CameraManager::drawGameCamera(ConstantBuffer* cb)
@@ -73,17 +90,21 @@ Matrix4x4 CameraManager::getCameraViewMatrix()
 
 void CameraManager::onKeyDown(int key)
 {
+	
 }
 
 void CameraManager::onKeyUp(int key)
 {
-
+	
 
 	if (key == '\t')//tab
 	{
 		m_camera_toggle = !m_camera_toggle;
 		
 	}
+
+
+
 }
 
 void CameraManager::onMouseMove(const Point& delta_mouse_pos)
