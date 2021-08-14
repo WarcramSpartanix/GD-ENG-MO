@@ -102,8 +102,12 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>GameEngine\CameraSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCamera.cpp">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -184,8 +188,12 @@
     <ClInclude Include="CameraManager.h">
       <Filter>GameEngine\CameraSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="Camera.h">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCamera.h">
+      <Filter>GameEngine\CameraSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

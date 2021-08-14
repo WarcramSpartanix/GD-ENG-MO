@@ -13,6 +13,7 @@
 #include <vector>
 #include "Plane.h"
 #include "Camera.h"
+#include "GameCamera.h"
 
 class AppWindow : public Window, public InputListener
 {
@@ -74,5 +75,6 @@ private:
 	float orthoNearPlane = -4.0f;
 
 	Cube* selectedCube = nullptr;
+	GameCamera* selectedCam = nullptr;
 };
 

@@ -66,16 +66,34 @@ void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 			}
 		}
 	}
+	//check with cam mesh
+	if (!isPerspective)
+		t = CameraManager::getInstance()->getGameCam()->checkRaycast(raycastWorld + (*cam)->getLocalPosition() + (*cam)->getForwardVector() * (orthoNearPlane), (*cam)->getForwardVector());
+	else
+		t = CameraManager::getInstance()->getGameCam()->checkRaycast((*cam)->getLocalPosition(), raycastWorld);
+
+	if (t != -9999)
+	{
+		if (t < minT)
+		{
+			minT = t;
+			minIndex = cubes.size();
+		}
+	}
 
 	if (minIndex != -1)
 	{
-		selectedCube = cubes[minIndex];
+		if (minIndex < cubes.size())
+			selectedCube = cubes[minIndex];
+		else
+			selectedCam = CameraManager::getInstance()->getGameCam();
 	}
 }
 
 void AppWindow::onLeftMouseUp(const Point& mouse_pos)
 {
 	selectedCube = nullptr;
+	selectedCam = nullptr;
 }
 
 void AppWindow::onRightMouseDown(const Point& mouse_pos)
@@ -105,6 +123,14 @@ void AppWindow::onMouseMove(const Point& delta_mouse_pos)
 		Vector3D newPos = cubePos + viewMat.getXDirection() * delta_mouse_pos.x * 0.5f * m_delta_time - 
 							viewMat.getYDirection() * delta_mouse_pos.y * 0.5f * m_delta_time;
 		selectedCube->setPosition(newPos);
+	}
+	else if (selectedCam != nullptr)
+	{
+		Vector3D cubePos = selectedCam->getLocalPosition();
+		Matrix4x4 viewMat = (*cam)->getViewMatrix();
+		Vector3D newPos = cubePos + viewMat.getXDirection() * delta_mouse_pos.x * 0.5f * m_delta_time -
+			viewMat.getYDirection() * delta_mouse_pos.y * 0.5f * m_delta_time;
+		selectedCam->setPosition(newPos);
 	}
 }
 

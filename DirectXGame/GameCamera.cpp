@@ -15,6 +15,8 @@ GameCamera::GameCamera(std::string name, Vector3D pos) : Camera(name)
 
 GameCamera::~GameCamera()
 {
+	delete collisionBox;
+
 	m_vb->release();
 	m_vs->release();
 	m_ps->release();
@@ -39,7 +41,7 @@ void GameCamera::initializeMesh()
 	edges[12] = Vector3D(-0.25f, 0.25f, 0);
 	edges[13] = Vector3D(-0.25f, -0.25f, 0);
 
-	
+	collisionBox = new BoundingBox(this->localPosition + Vector3D(0,0,-0.125f), this->localRotation, 0.5f, 0.5f, 1.25f);
 
 	GraphicsEngine* graphEngine = GraphicsEngine::getInstance();
 
@@ -134,10 +136,14 @@ void GameCamera::draw(ConstantBuffer* cb)
 
 void GameCamera::setPosition(float x, float y, float z)
 {
+	AGameObject::setPosition(x, y, z);
+	collisionBox->setPosition(this->localPosition + Vector3D(0, 0, -0.125f));
 }
 
 void GameCamera::setPosition(Vector3D pos)
 {
+	AGameObject::setPosition(pos);
+	collisionBox->setPosition(this->localPosition + Vector3D(0, 0, -0.125f));
 }
 
 void GameCamera::setScale(float x, float y, float z)
@@ -150,10 +156,14 @@ void GameCamera::setScale(Vector3D scale)
 
 void GameCamera::setRotation(float x, float y, float z)
 {
+	AGameObject::setRotation(x, y, z);
+	collisionBox->setRotation(Vector3D(x, y, z));
 }
 
 void GameCamera::setRotation(Vector3D rot)
 {
+	AGameObject::setRotation(rot);
+	collisionBox->setRotation(rot);
 }
 
 Vector3D* GameCamera::getVertexWorldPositions()
@@ -180,7 +190,7 @@ Vector3D* GameCamera::getVertexWorldPositions()
 
 float GameCamera::checkRaycast(Vector3D rayOrigin, Vector3D rayDirection)
 {
-	return 0.0f;
+	return collisionBox->checkRaycast(rayOrigin, rayDirection);
 }
 
 void GameCamera::updateVertexLocations()
