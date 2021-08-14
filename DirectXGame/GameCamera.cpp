@@ -6,6 +6,7 @@
 #include "ConstantBuffer.h"
 #include "DeviceContext.h"
 #include "IndexBuffer.h"
+#include "BoundingBox.h"
 
 GameCamera::GameCamera(std::string name, Vector3D pos) : Camera(name)
 {
@@ -22,14 +23,23 @@ GameCamera::~GameCamera()
 
 void GameCamera::initializeMesh()
 {
-	edges[0] = Vector3D(-this->localScale.x / 2.0f, -this->localScale.y / 2.0f, -this->localScale.z / 2.0f);
-	edges[1] = Vector3D(-this->localScale.x / 2.0f, this->localScale.y / 2.0f, -this->localScale.z / 2.0f);
-	edges[2] = Vector3D(this->localScale.x / 2.0f, this->localScale.y / 2.0f, -this->localScale.z / 2.0f);
-	edges[3] = Vector3D(this->localScale.x / 2.0f, -this->localScale.y / 2.0f, -this->localScale.z / 2.0f);
-	edges[4] = Vector3D(this->localScale.x / 2.0f, -this->localScale.y / 2.0f, this->localScale.z / 2.0f);
-	edges[5] = Vector3D(this->localScale.x / 2.0f, this->localScale.y / 2.0f, this->localScale.z / 2.0f);
-	edges[6] = Vector3D(-this->localScale.x / 2.0f, this->localScale.y / 2.0f, this->localScale.z / 2.0f);
-	edges[7] = Vector3D(-this->localScale.x / 2.0f, -this->localScale.y / 2.0f, this->localScale.z / 2.0f);
+	edges[0] = Vector3D(0, 0, 0);
+	edges[1] = Vector3D(-0.25f, 0.25f, 0.5f);
+	edges[2] = Vector3D(0.25f, -0.25f, 0.5f);
+	edges[3] = Vector3D(-0.25f, -0.25f, 0.5f);
+	edges[4] = Vector3D(0.25f, 0.25f, 0.5f);
+	edges[5] = Vector3D(0.25f, 0.25f, 0.5f);
+
+	edges[6] = Vector3D(-0.25f, -0.25f, -0.75f);
+	edges[7] = Vector3D(-0.25f, 0.25f, -0.75f);
+	edges[8] = Vector3D(0.25f, 0.25f, -0.75f);
+	edges[9] = Vector3D(0.25f, -0.25f, -0.75f);
+	edges[10] = Vector3D(0.25f, -0.25f, 0);
+	edges[11] = Vector3D(0.25f, 0.25f, 0);
+	edges[12] = Vector3D(-0.25f, 0.25f, 0);
+	edges[13] = Vector3D(-0.25f, -0.25f, 0);
+
+	
 
 	GraphicsEngine* graphEngine = GraphicsEngine::getInstance();
 
@@ -40,15 +50,22 @@ void GameCamera::initializeMesh()
 	Vector3D* worldLocations = getVertexWorldPositions();
 
 	vertex list[] = {
-		{ worldLocations[0],		Vector3D(1,1,1) },
-		{ worldLocations[1],		Vector3D(1,1,1) },
-		{ worldLocations[2],		Vector3D(1,1,1) },
-		{ worldLocations[3],		Vector3D(1,1,1) },
+		{ worldLocations[0],	Vector3D(1,1,1) },
 
-		{ worldLocations[4],		Vector3D(1,1,1) },
-		{ worldLocations[5],		Vector3D(1,1,1) },
-		{ worldLocations[6],		Vector3D(1,1,1) },
-		{ worldLocations[7],		Vector3D(1,1,1) },
+		{ worldLocations[1],	Vector3D(1,1,1) },
+		{ worldLocations[2],	Vector3D(1,1,1) },
+		{ worldLocations[3],	Vector3D(1,1,1) },
+		{ worldLocations[4],	Vector3D(1,1,1) },
+		{ worldLocations[5],	Vector3D(1,1,1) },
+		
+		{ worldLocations[6],	Vector3D(1,1,1) },
+		{ worldLocations[7],	Vector3D(1,1,1) },
+		{ worldLocations[8],	Vector3D(1,1,1) },
+		{ worldLocations[9],	Vector3D(1,1,1) },
+		{ worldLocations[10],	Vector3D(1,1,1) },
+		{ worldLocations[11],	Vector3D(1,1,1) },
+		{ worldLocations[12],	Vector3D(1,1,1) },
+		{ worldLocations[13],	Vector3D(1,1,1) },
 	};
 
 	m_vb = GraphicsEngine::getInstance()->createVertexBuffer();
@@ -56,23 +73,31 @@ void GameCamera::initializeMesh()
 	UINT size_list = ARRAYSIZE(list);
 
 	unsigned int index_list[] = {
-		0,1,2,
-		2,3,0,
-
-		4,5,6,
-		6,7,4,
-
-		1,6,5,
-		5,2,1,
-
-		7,0,3,
-		3,4,7,
-
 		3,2,5,
-		5,4,3,
+		1,3,4,
 
-		7,6,1,
-		1,0,7
+		0,4,2,
+		0,2,3,
+		1,4,0,
+		0,3,1,
+
+		6,7,8,
+		8,9,6,
+
+		10,11,12,
+		12,13,10,
+
+		7,12,11,
+		11,8,7,
+
+		13,6,9,
+		9,10,13,
+
+		9,8,11,
+		11,10,9,
+
+		13,12,7,
+		7,6,13
 	};
 
 	m_ib = GraphicsEngine::getInstance()->createIndexBuffer();
@@ -107,6 +132,30 @@ void GameCamera::draw(ConstantBuffer* cb)
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 }
 
+void GameCamera::setPosition(float x, float y, float z)
+{
+}
+
+void GameCamera::setPosition(Vector3D pos)
+{
+}
+
+void GameCamera::setScale(float x, float y, float z)
+{
+}
+
+void GameCamera::setScale(Vector3D scale)
+{
+}
+
+void GameCamera::setRotation(float x, float y, float z)
+{
+}
+
+void GameCamera::setRotation(Vector3D rot)
+{
+}
+
 Vector3D* GameCamera::getVertexWorldPositions()
 {
 	Vector3D worldLocations[] = {
@@ -118,9 +167,20 @@ Vector3D* GameCamera::getVertexWorldPositions()
 		Quaternion::rotatePointEuler(edges[5], this->localRotation) + this->localPosition,
 		Quaternion::rotatePointEuler(edges[6], this->localRotation) + this->localPosition,
 		Quaternion::rotatePointEuler(edges[7], this->localRotation) + this->localPosition,
+		Quaternion::rotatePointEuler(edges[8], this->localRotation) + this->localPosition,
+		Quaternion::rotatePointEuler(edges[9], this->localRotation) + this->localPosition,
+		Quaternion::rotatePointEuler(edges[10], this->localRotation) + this->localPosition,
+		Quaternion::rotatePointEuler(edges[11], this->localRotation) + this->localPosition,
+		Quaternion::rotatePointEuler(edges[12], this->localRotation) + this->localPosition,
+		Quaternion::rotatePointEuler(edges[13], this->localRotation) + this->localPosition,
 	};
 
 	return worldLocations;
+}
+
+float GameCamera::checkRaycast(Vector3D rayOrigin, Vector3D rayDirection)
+{
+	return 0.0f;
 }
 
 void GameCamera::updateVertexLocations()
@@ -134,15 +194,22 @@ void GameCamera::updateVertexLocations()
 	Vector3D* worldLocations = getVertexWorldPositions();
 
 	vertex list[] = {
-		{ worldLocations[0],		Vector3D(1,1,1) },
-		{ worldLocations[1],		Vector3D(1,1,1) },
-		{ worldLocations[2],		Vector3D(1,1,1) },
-		{ worldLocations[3],		Vector3D(1,1,1) },
+		{ worldLocations[0],	Vector3D(1,1,1) },
 
-		{ worldLocations[4],		Vector3D(1,1,1) },
-		{ worldLocations[5],		Vector3D(1,1,1) },
-		{ worldLocations[6],		Vector3D(1,1,1) },
-		{ worldLocations[7],		Vector3D(1,1,1) },
+		{ worldLocations[1],	Vector3D(1,1,1) },
+		{ worldLocations[2],	Vector3D(1,1,1) },
+		{ worldLocations[3],	Vector3D(1,1,1) },
+		{ worldLocations[4],	Vector3D(1,1,1) },
+		{ worldLocations[5],	Vector3D(1,1,1) },
+
+		{ worldLocations[6],	Vector3D(1,1,1) },
+		{ worldLocations[7],	Vector3D(1,1,1) },
+		{ worldLocations[8],	Vector3D(1,1,1) },
+		{ worldLocations[9],	Vector3D(1,1,1) },
+		{ worldLocations[10],	Vector3D(1,1,1) },
+		{ worldLocations[11],	Vector3D(1,1,1) },
+		{ worldLocations[12],	Vector3D(1,1,1) },
+		{ worldLocations[13],	Vector3D(1,1,1) },
 	};
 
 	UINT size_list = ARRAYSIZE(list);
