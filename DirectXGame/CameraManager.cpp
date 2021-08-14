@@ -30,6 +30,11 @@ Camera** CameraManager::getActiveCameraAddress()
 	return &m_active_camera;
 }
 
+GameCamera* CameraManager::getGameCam()
+{
+	return m_game_camera;
+}
+
 void CameraManager::update()
 {
 	if (m_scene_camera != nullptr)
@@ -57,9 +62,8 @@ void CameraManager::update()
 
 void CameraManager::drawGameCamera(ConstantBuffer* cb)
 {
-	/*
 		m_game_camera->draw(cb);
-	*/
+	
 }
 
 Matrix4x4 CameraManager::getCameraViewMatrix()
@@ -109,13 +113,11 @@ CameraManager::CameraManager()
 	m_scene_camera = new Camera("SceneCamera");
 	InputSystem::getInstance()->addListener(m_scene_camera);
 	
-	m_game_camera = new GameCamera("GameCamera");
+	m_game_camera = new GameCamera("GameCamera", Vector3D(0, 0, -2));
 
 	m_active_camera = m_scene_camera;
 
 	m_scene_camera->setPosition(0, 0, -2);
-	m_game_camera->setPosition(0, 0, -2);
-	
 }
 
 CameraManager::~CameraManager()

@@ -46,7 +46,7 @@ Matrix4x4 Camera::getViewMatrix()
 }
 
 void Camera::draw(ConstantBuffer* cb)
-{
+{	
 }
 
 void Camera::updateVertexLocations()
