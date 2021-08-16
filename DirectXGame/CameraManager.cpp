@@ -7,7 +7,7 @@ CameraManager* CameraManager::sharedInstance = nullptr;
 CameraManager* CameraManager::getInstance()
 {
 	if (sharedInstance == nullptr)
-		initialize();
+ 		initialize();
     return sharedInstance;
 }
 
@@ -18,6 +18,9 @@ void CameraManager::initialize()
 
 void CameraManager::destroy()
 {
+	sharedInstance->m_active_camera = nullptr;
+	delete sharedInstance->m_game_camera;
+	delete sharedInstance->m_scene_camera;
 }
 
 Camera* CameraManager::getSceneCamera()
@@ -79,7 +82,7 @@ void CameraManager::onKeyUp(int key)
 {
 
 
-	if (key == '\t')//tab
+	if (key == 'T')//tab
 	{
 		m_camera_toggle = !m_camera_toggle;
 		
@@ -114,10 +117,11 @@ CameraManager::CameraManager()
 	InputSystem::getInstance()->addListener(m_scene_camera);
 	
 	m_game_camera = new GameCamera("GameCamera", Vector3D(0, 0, -2));
+	InputSystem::getInstance()->removeListener(m_game_camera);
 
 	m_active_camera = m_scene_camera;
 
-	m_scene_camera->setPosition(0, 0, -2);
+			m_scene_camera->setPosition(0, 0, -2);
 }
 
 CameraManager::~CameraManager()

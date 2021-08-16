@@ -240,6 +240,7 @@ void AppWindow::onDestroy()
 	Window::onDestroy();
 
 	m_swap_chain->release();
+	CameraManager::getInstance()->destroy();
 	GraphicsEngine::getInstance()->destroy();
 }
 
