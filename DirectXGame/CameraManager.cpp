@@ -59,21 +59,29 @@ void CameraManager::update()
 		m_camera_toggle = false;
 	}
 
-
+	//align with view
 	bool ctrl = InputSystem::getInstance()->isKeyDown(16);
 	bool shift = InputSystem::getInstance()->isKeyDown(17);
 	bool F = InputSystem::getInstance()->isKeyDown(70);
 	if (ctrl && shift && F)
 	{
-		if (m_active_camera == m_game_camera)
+		m_align_animating = true;
+		
+	}
+	if (m_active_camera == m_game_camera && m_align_animating == true)
+	{
+		if (m_align_percent < 1.0f)
 		{
-			m_game_camera->setPosition(m_scene_camera->getLocalPosition());
-			m_game_camera->setRotation(m_scene_camera->getLocalRotation());
+			m_align_percent += EngineTime::getDeltaTime();
+			m_game_camera->setPosition(Vector3D::lerp(m_game_camera->getLocalPosition(), m_scene_camera->getLocalPosition(), m_align_percent));
+			m_game_camera->setRotation(Vector3D::lerp(m_game_camera->getLocalRotation(), m_scene_camera->getLocalRotation(), m_align_percent));
+		}
+		else
+		{
+			m_align_percent = 0.0f;
+			m_align_animating = false;
 		}
 	}
-
-
-
 
 }
 

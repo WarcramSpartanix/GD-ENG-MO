@@ -41,5 +41,8 @@ private:
 	Camera* m_active_camera;
 	GameCamera* m_game_camera;
 	bool m_camera_toggle = false; // if true, change camera mode
+
+	float m_align_percent = 0.0f;
+	bool m_align_animating = false;
 };
 
