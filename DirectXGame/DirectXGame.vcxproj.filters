@@ -40,6 +40,18 @@
     <Filter Include="GameEngine\CameraSystem">
       <UniqueIdentifier>{bd7e0a36-f6c5-405e-a041-2f408b7c5465}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\UISystem">
+      <UniqueIdentifier>{c6cca6e7-eaf8-4af5-8e50-5f84b512fa7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UISystem\CPP">
+      <UniqueIdentifier>{cddec7c5-41a0-45b6-8e22-9c03d64c6a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UISystem\Header">
+      <UniqueIdentifier>{5f974a79-a452-4921-97cf-c574c6d736bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IMGUI">
+      <UniqueIdentifier>{cea2f395-72d4-433d-86ac-9a46b599203a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -107,6 +119,42 @@
     </ClCompile>
     <ClCompile Include="GameCamera.cpp">
       <Filter>GameEngine\CameraSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AUIScreen.cpp">
+      <Filter>GameEngine\UISystem\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="HierarchyScreen.cpp">
+      <Filter>GameEngine\UISystem\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="InspectorScreen.cpp">
+      <Filter>GameEngine\UISystem\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScreen.cpp">
+      <Filter>GameEngine\UISystem\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfilerScreen.cpp">
+      <Filter>GameEngine\UISystem\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>GameEngine\UISystem\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_demo.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_draw.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_impl_dx11.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_impl_win32.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_widgets.cpp">
+      <Filter>IMGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +242,48 @@
     <ClInclude Include="GameCamera.h">
       <Filter>GameEngine\CameraSystem</Filter>
     </ClInclude>
+    <ClInclude Include="AUIScreen.h">
+      <Filter>GameEngine\UISystem\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="HierarchyScreen.h">
+      <Filter>GameEngine\UISystem\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="InspectorScreen.h">
+      <Filter>GameEngine\UISystem\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>GameEngine\UISystem\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfilerScreen.h">
+      <Filter>GameEngine\UISystem\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>GameEngine\UISystem\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imconfig.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_impl_dx11.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_impl_win32.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_internal.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imstb_rectpack.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imstb_textedit.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imstb_truetype.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">
@@ -202,5 +292,10 @@
     <FxCompile Include="PixelShader.hlsl">
       <Filter>App</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IMGUI\imgui.ini">
+      <Filter>IMGUI</Filter>
+    </None>
   </ItemGroup>
 </Project>

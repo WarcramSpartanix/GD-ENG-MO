@@ -30,16 +30,15 @@ void GameCamera::initializeMesh()
 	edges[2] = Vector3D(0.25f, -0.25f, 0.5f);
 	edges[3] = Vector3D(-0.25f, -0.25f, 0.5f);
 	edges[4] = Vector3D(0.25f, 0.25f, 0.5f);
-	edges[5] = Vector3D(0.25f, 0.25f, 0.5f);
 
-	edges[6] = Vector3D(-0.25f, -0.25f, -0.75f);
-	edges[7] = Vector3D(-0.25f, 0.25f, -0.75f);
-	edges[8] = Vector3D(0.25f, 0.25f, -0.75f);
-	edges[9] = Vector3D(0.25f, -0.25f, -0.75f);
-	edges[10] = Vector3D(0.25f, -0.25f, 0);
-	edges[11] = Vector3D(0.25f, 0.25f, 0);
-	edges[12] = Vector3D(-0.25f, 0.25f, 0);
-	edges[13] = Vector3D(-0.25f, -0.25f, 0);
+	edges[5] = Vector3D(-0.25f, -0.25f, -0.75f);
+	edges[6] = Vector3D(-0.25f, 0.25f, -0.75f);
+	edges[7] = Vector3D(0.25f, 0.25f, -0.75f);
+	edges[8] = Vector3D(0.25f, -0.25f, -0.75f);
+	edges[9] = Vector3D(0.25f, -0.25f, 0);
+	edges[10] = Vector3D(0.25f, 0.25f, 0);
+	edges[11] = Vector3D(-0.25f, 0.25f, 0);
+	edges[12] = Vector3D(-0.25f, -0.25f, 0);
 
 	collisionBox = new BoundingBox(this->localPosition + Vector3D(0,0,-0.125f), this->localRotation, 0.5f, 0.5f, 1.25f);
 
@@ -58,8 +57,8 @@ void GameCamera::initializeMesh()
 		{ worldLocations[2],	Vector3D(1,1,1) },
 		{ worldLocations[3],	Vector3D(1,1,1) },
 		{ worldLocations[4],	Vector3D(1,1,1) },
+
 		{ worldLocations[5],	Vector3D(1,1,1) },
-		
 		{ worldLocations[6],	Vector3D(1,1,1) },
 		{ worldLocations[7],	Vector3D(1,1,1) },
 		{ worldLocations[8],	Vector3D(1,1,1) },
@@ -67,7 +66,6 @@ void GameCamera::initializeMesh()
 		{ worldLocations[10],	Vector3D(1,1,1) },
 		{ worldLocations[11],	Vector3D(1,1,1) },
 		{ worldLocations[12],	Vector3D(1,1,1) },
-		{ worldLocations[13],	Vector3D(1,1,1) },
 	};
 
 	m_vb = GraphicsEngine::getInstance()->createVertexBuffer();
@@ -75,7 +73,7 @@ void GameCamera::initializeMesh()
 	UINT size_list = ARRAYSIZE(list);
 
 	unsigned int index_list[] = {
-		3,2,5,
+		3,2,4,
 		1,3,4,
 
 		0,4,2,
@@ -83,23 +81,23 @@ void GameCamera::initializeMesh()
 		1,4,0,
 		0,3,1,
 
-		6,7,8,
-		8,9,6,
+		5,6,7,
+		7,8,5,
 
-		10,11,12,
-		12,13,10,
+		9,10,11,
+		11,12,9,
 
-		7,12,11,
-		11,8,7,
+		6,11,10,
+		10,7,6,
 
-		13,6,9,
-		9,10,13,
+		12,5,8,
+		8,9,12,
 
-		9,8,11,
-		11,10,9,
+		8,7,10,
+		10,9,8,
 
-		13,12,7,
-		7,6,13
+		12,11,6,
+		6,5,12
 	};
 
 	m_ib = GraphicsEngine::getInstance()->createIndexBuffer();
@@ -182,7 +180,6 @@ Vector3D* GameCamera::getVertexWorldPositions()
 		Quaternion::rotatePointEuler(edges[10], this->localRotation) + this->localPosition,
 		Quaternion::rotatePointEuler(edges[11], this->localRotation) + this->localPosition,
 		Quaternion::rotatePointEuler(edges[12], this->localRotation) + this->localPosition,
-		Quaternion::rotatePointEuler(edges[13], this->localRotation) + this->localPosition,
 	};
 
 	return worldLocations;
@@ -210,8 +207,8 @@ void GameCamera::updateVertexLocations()
 		{ worldLocations[2],	Vector3D(1,1,1) },
 		{ worldLocations[3],	Vector3D(1,1,1) },
 		{ worldLocations[4],	Vector3D(1,1,1) },
+		
 		{ worldLocations[5],	Vector3D(1,1,1) },
-
 		{ worldLocations[6],	Vector3D(1,1,1) },
 		{ worldLocations[7],	Vector3D(1,1,1) },
 		{ worldLocations[8],	Vector3D(1,1,1) },
@@ -219,7 +216,6 @@ void GameCamera::updateVertexLocations()
 		{ worldLocations[10],	Vector3D(1,1,1) },
 		{ worldLocations[11],	Vector3D(1,1,1) },
 		{ worldLocations[12],	Vector3D(1,1,1) },
-		{ worldLocations[13],	Vector3D(1,1,1) },
 	};
 
 	UINT size_list = ARRAYSIZE(list);
