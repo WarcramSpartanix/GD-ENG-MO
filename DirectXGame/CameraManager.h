@@ -24,7 +24,11 @@ public:
 	void drawGameCamera(ConstantBuffer* cb);
 	Matrix4x4 getCameraViewMatrix();
 
+
 	std::vector<Matrix4x4> getAllCameraViewMatrices();
+
+	void alignView();
+
 
 public:
 	virtual void onKeyDown(int key) override;
@@ -48,5 +52,8 @@ private:
 	Camera* m_active_camera;
 	GameCamera* m_game_camera;
 	bool m_camera_toggle = false; // if true, change camera mode
+
+	float m_align_percent = 0.0f;
+	bool m_align_animating = false;
 };
 

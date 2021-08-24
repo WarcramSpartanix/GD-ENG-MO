@@ -43,8 +43,7 @@ void MenuScreen::drawUI()
 			{
 				if (CameraManager::getInstance()->getGameCam() != nullptr)
 				{
-					GameCamera* gameCam = CameraManager::getInstance()->getGameCam();
-					Camera* cam = CameraManager::getInstance()->getSceneCamera();
+					CameraManager::getInstance()->alignView();
 				}
 			}
 			if (ImGui::BeginMenu("Light")) {

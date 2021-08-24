@@ -66,19 +66,6 @@ void CameraManager::setActiveCamera(CameraType type)
 	default:
 		break;
 	}
-
-	if (m_active_camera == m_scene_camera && m_game_camera != nullptr)
-	{
-		m_active_camera = m_game_camera;
-		InputSystem::getInstance()->addListener(m_game_camera);
-		InputSystem::getInstance()->removeListener(m_scene_camera);
-	}
-	else
-	{
-		m_active_camera = m_scene_camera;
-		InputSystem::getInstance()->addListener(m_scene_camera);
-		InputSystem::getInstance()->removeListener(m_game_camera);
-	}
 }
 
 void CameraManager::switchCamera()
@@ -109,6 +96,32 @@ void CameraManager::update()
 		}
 		m_camera_toggle = false;
 	}
+
+	//align with view
+	bool ctrl = InputSystem::getInstance()->isKeyDown(16);
+	bool shift = InputSystem::getInstance()->isKeyDown(17);
+	bool F = InputSystem::getInstance()->isKeyDown(70);
+	if (ctrl && shift && F)
+	{
+		m_align_animating = true;
+	}
+	if (m_game_camera != nullptr && m_align_animating == true)
+	{
+		if (m_align_percent < 1.0f)
+		{
+			m_align_percent += EngineTime::getDeltaTime();
+			m_game_camera->setPosition(Vector3D::lerp(m_game_camera->getLocalPosition(), m_scene_camera->getLocalPosition(), m_align_percent));
+			m_game_camera->setRotation(Vector3D::lerp(m_game_camera->getLocalRotation(), m_scene_camera->getLocalRotation(), m_align_percent));
+		}
+		else
+		{
+			m_align_percent = 0.0f;
+			m_align_animating = false;
+		}
+	}
+	else
+		m_align_animating = false; // in case game camera not yet created. Avoid issues
+
 }
 
 void CameraManager::drawGameCamera(ConstantBuffer* cb)
@@ -123,6 +136,7 @@ Matrix4x4 CameraManager::getCameraViewMatrix()
 	return m_scene_camera->getViewMatrix();
 }
 
+
 std::vector<Matrix4x4> CameraManager::getAllCameraViewMatrices()
 {
 	std::vector<Matrix4x4> out;
@@ -133,19 +147,28 @@ std::vector<Matrix4x4> CameraManager::getAllCameraViewMatrices()
 	return out;
 }
 
+void CameraManager::alignView()
+{
+	m_align_animating = true;
+}
+
 void CameraManager::onKeyDown(int key)
 {
+	
 }
 
 void CameraManager::onKeyUp(int key)
 {
-
+	
 
 	if (key == 'T')//tab
 	{
 		m_camera_toggle = !m_camera_toggle;
 		
 	}
+
+
+
 }
 
 void CameraManager::onMouseMove(const Point& delta_mouse_pos)
@@ -180,7 +203,7 @@ CameraManager::CameraManager()
 
 	m_active_camera = m_scene_camera;
 
-			m_scene_camera->setPosition(0, 0, -2);
+	m_scene_camera->setPosition(0, 0, -2);
 }
 
 CameraManager::~CameraManager()
