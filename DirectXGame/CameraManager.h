@@ -24,6 +24,8 @@ public:
 	void drawGameCamera(ConstantBuffer* cb);
 	Matrix4x4 getCameraViewMatrix();
 
+	std::vector<Matrix4x4> getAllCameraViewMatrices();
+
 public:
 	virtual void onKeyDown(int key) override;
 	virtual void onKeyUp(int key) override;

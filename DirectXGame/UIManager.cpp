@@ -39,10 +39,17 @@ void UIManager::drawAllUI()
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
 
-ViewportScreen* UIManager::getViewportUI()
+ViewportScreen* UIManager::getViewportUI(int index)
 {
-    UINames uinames;
-    return (ViewportScreen*)this->uiTable[uinames.VIEWPORT_SCREEN];
+    return viewportScreens[index];
+}
+
+void UIManager::addViewport()
+{
+    ViewportScreen* viewport = new ViewportScreen(viewportScreens.size() + 1);
+    this->uiTable["VIEWPORT_SCREEN " + (viewportScreens.size() + 1)] = viewport;
+    this->uiList.push_back(viewport);
+    this->viewportScreens.push_back(viewport);
 }
 
 UIManager::UIManager(HWND windowHandle)
@@ -69,10 +76,6 @@ UIManager::UIManager(HWND windowHandle)
     HierarchyScreen* hiScreen = new HierarchyScreen();
     this->uiTable[uiNames.HIERARCHY_SCREEN] = hiScreen;
     this->uiList.push_back(hiScreen);
-    
-    ViewportScreen* viewport = new ViewportScreen();
-    this->uiTable[uiNames.VIEWPORT_SCREEN] = viewport;
-    this->uiList.push_back(viewport);
 }
 
 UIManager::~UIManager()

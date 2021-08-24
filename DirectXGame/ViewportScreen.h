@@ -5,7 +5,7 @@
 class ViewportScreen : public AUIScreen
 {
 public:
-	ViewportScreen();
+	ViewportScreen(int num);
 	~ViewportScreen();
 
 	virtual void drawUI() override;
@@ -14,6 +14,7 @@ public:
 
 private:
 	ID3D11ShaderResourceView* texToShow;
+	int index;
 
 	friend class UIManager;
 };

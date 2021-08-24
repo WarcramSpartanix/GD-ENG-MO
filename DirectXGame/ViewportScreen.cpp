@@ -4,7 +4,7 @@
 #include "imGUI/imgui_impl_win32.h"
 #include "UIManager.h"
 
-ViewportScreen::ViewportScreen() : AUIScreen("Viewport")
+ViewportScreen::ViewportScreen(int num) : AUIScreen("Viewport"), index(num)
 {
 }
 
@@ -14,9 +14,12 @@ ViewportScreen::~ViewportScreen()
 
 void ViewportScreen::drawUI()
 {
-	ImGui::Begin("Camera Viewport");
-	ImVec2 wsize = ImGui::GetWindowSize();
-	ImGui::Image(texToShow, wsize);
+	std::string name = "Camera Viewport " + std::to_string(index);
+	ImGui::Begin(name.c_str());
+
+	ImVec2 windowSize = ImGui::GetWindowSize();
+	ImGui::Image(texToShow, windowSize);
+
 	ImGui::End();
 }
 

@@ -123,6 +123,16 @@ Matrix4x4 CameraManager::getCameraViewMatrix()
 	return m_scene_camera->getViewMatrix();
 }
 
+std::vector<Matrix4x4> CameraManager::getAllCameraViewMatrices()
+{
+	std::vector<Matrix4x4> out;
+	out.push_back(m_scene_camera->getViewMatrix());
+	if (m_game_camera != nullptr)
+		out.push_back(m_game_camera->getViewMatrix());
+
+	return out;
+}
+
 void CameraManager::onKeyDown(int key)
 {
 }

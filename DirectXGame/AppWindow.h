@@ -68,9 +68,6 @@ private:
 	float m_previous_time;
 	float m_current_time;
 	float m_delta_time;
-	
-	float m_delta_pos;
-	float m_delta_scale;
 
 	bool isPerspective = true;
 	float orthoNearPlane = -4.0f;
@@ -78,6 +75,6 @@ private:
 	Cube* selectedCube = nullptr;
 	GameCamera* selectedCam = nullptr;
 
-	RenderToTexture* renderToTex;
+	std::vector<RenderToTexture*> renderToTexes;
 };
 
