@@ -2,11 +2,11 @@
 #include "AUIScreen.h"
 class HierarchyScreen : public AUIScreen
 {
-public:
+private:
 	HierarchyScreen();
 	~HierarchyScreen();
 
-	// Inherited via AUIScreen
 	virtual void drawUI() override;
+	void updateObjectList() const;
+	friend class UIManager;
 };
-
