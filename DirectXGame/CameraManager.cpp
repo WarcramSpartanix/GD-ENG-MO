@@ -66,19 +66,6 @@ void CameraManager::setActiveCamera(CameraType type)
 	default:
 		break;
 	}
-
-	if (m_active_camera == m_scene_camera && m_game_camera != nullptr)
-	{
-		m_active_camera = m_game_camera;
-		InputSystem::getInstance()->addListener(m_game_camera);
-		InputSystem::getInstance()->removeListener(m_scene_camera);
-	}
-	else
-	{
-		m_active_camera = m_scene_camera;
-		InputSystem::getInstance()->addListener(m_scene_camera);
-		InputSystem::getInstance()->removeListener(m_game_camera);
-	}
 }
 
 void CameraManager::switchCamera()
@@ -117,9 +104,8 @@ void CameraManager::update()
 	if (ctrl && shift && F)
 	{
 		m_align_animating = true;
-		
 	}
-	if (m_active_camera == m_game_camera && m_align_animating == true)
+	if (m_game_camera != nullptr && m_align_animating == true)
 	{
 		if (m_align_percent < 1.0f)
 		{
@@ -133,6 +119,8 @@ void CameraManager::update()
 			m_align_animating = false;
 		}
 	}
+	else
+		m_align_animating = false; // in case game camera not yet created. Avoid issues
 
 }
 
@@ -146,6 +134,11 @@ void CameraManager::drawGameCamera(ConstantBuffer* cb)
 Matrix4x4 CameraManager::getCameraViewMatrix()
 {
 	return m_scene_camera->getViewMatrix();
+}
+
+void CameraManager::alignView()
+{
+	m_align_animating = true;
 }
 
 void CameraManager::onKeyDown(int key)
@@ -199,7 +192,7 @@ CameraManager::CameraManager()
 
 	m_active_camera = m_scene_camera;
 
-			m_scene_camera->setPosition(0, 0, -2);
+	m_scene_camera->setPosition(0, 0, -2);
 }
 
 CameraManager::~CameraManager()

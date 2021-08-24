@@ -24,6 +24,8 @@ public:
 	void drawGameCamera(ConstantBuffer* cb);
 	Matrix4x4 getCameraViewMatrix();
 
+	void alignView();
+
 public:
 	virtual void onKeyDown(int key) override;
 	virtual void onKeyUp(int key) override;
