@@ -190,6 +190,18 @@ float GameCamera::checkRaycast(Vector3D rayOrigin, Vector3D rayDirection)
 	return collisionBox->checkRaycast(rayOrigin, rayDirection);
 }
 
+void GameCamera::onKeyDown(int key)
+{
+}
+
+void GameCamera::onKeyUp(int key)
+{
+}
+
+void GameCamera::onMouseMove(const Point& delta_mouse_pos)
+{
+}
+
 void GameCamera::updateVertexLocations()
 {
 	GraphicsEngine* graphEngine = GraphicsEngine::getInstance();

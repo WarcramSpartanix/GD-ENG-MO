@@ -20,6 +20,9 @@ AppWindow::~AppWindow()
 
 void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 {
+	if (*CameraManager::getInstance()->getActiveCameraAddress() == CameraManager::getInstance()->getGameCam())
+		return;
+
 	POINT point = { mouse_pos.x, mouse_pos.y };
 	ScreenToClient(this->m_hwnd, &point);
 

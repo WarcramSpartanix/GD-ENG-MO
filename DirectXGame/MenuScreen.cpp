@@ -27,6 +27,9 @@ void MenuScreen::drawUI()
 		}
 		if (ImGui::BeginMenu("Game Object")) {
 			if (ImGui::MenuItem("Create Camera"))
+			{
+
+			}
 			if (ImGui::BeginMenu("Light")) {
 				if (ImGui::MenuItem("Point Light")) { /* Do stuff */ }
 				ImGui::EndMenu();
