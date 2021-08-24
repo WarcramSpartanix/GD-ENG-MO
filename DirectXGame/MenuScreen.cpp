@@ -6,6 +6,11 @@
 #include "GraphicsEngine.h"
 #include "VertexShader.h"
 #include "UIManager.h"
+#include "GameCamera.h"
+#include "GameObjectManager.h"
+#include "CameraManager.h"
+#include "Cube.h"
+
 
 MenuScreen::MenuScreen() : AUIScreen("Menu")
 {
@@ -28,12 +33,22 @@ void MenuScreen::drawUI()
 		if (ImGui::BeginMenu("Game Object")) {
 			if (ImGui::MenuItem("Create Camera"))
 			{
-
+				if(CameraManager::getInstance()->getGameCam() == nullptr)
+					GameObjectManager::getInstance()->addObject(new GameCamera("GameCamera", Vector3D(0, 0, 0)));
+			}
+			if (ImGui::MenuItem("Align With View"))
+			{
+				if (CameraManager::getInstance()->getGameCam() != nullptr)
+				{
+					GameCamera* gameCam = CameraManager::getInstance()->getGameCam();
+					Camera* cam = CameraManager::getInstance()->getSceneCamera();
+				}
 			}
 			if (ImGui::BeginMenu("Light")) {
 				if (ImGui::MenuItem("Point Light")) { /* Do stuff */ }
 				ImGui::EndMenu();
 			}
+			ImGui::EndMenu();
 		}
 		if(ImGui::BeginMenu("Start Game"))
 		{

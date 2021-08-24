@@ -15,6 +15,7 @@ public:
 	Camera* getSceneCamera();
 	Camera** getActiveCameraAddress();
 	GameCamera* getGameCam();
+	void setGameCamera(GameCamera* gameCamera);
 	void update();
 	void drawGameCamera(ConstantBuffer* cb);
 	Matrix4x4 getCameraViewMatrix();

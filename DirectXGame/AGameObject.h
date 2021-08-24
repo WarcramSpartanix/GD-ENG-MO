@@ -4,6 +4,7 @@
 
 class VertexShader;
 class PixelShader;
+class GameObjectManager;
 class AGameObject
 {
 public:
@@ -38,5 +39,8 @@ protected:
 	Vector3D localScale;
 	Vector3D localRotation;
 	bool enabled = true;
+
+private:
+	friend class GameObjectManager;
 };
 

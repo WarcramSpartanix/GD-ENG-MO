@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include "AGameObject.h"
+#include "ConstantBuffer.h"
 
 class GameObjectManager
 {
@@ -26,7 +27,7 @@ public:
 	List getAllObjects();
 	int activeObjects();
 	void updateAll();
-	void renderAll(int viewportWidth, int viewportHeight, VertexShader* vertexShader, PixelShader* pixelShader);
+	void renderAll(ConstantBuffer* cb);
 	void addObject(AGameObject* gameObject);
 	void createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader);
 	void deleteObject(AGameObject* gameObject);

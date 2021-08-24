@@ -6,6 +6,7 @@
 #include <iostream>
 #include <random>
 #include "UIManager.h"
+#include "GameObjectManager.h"
 
 AppWindow* AppWindow::sharedInstance = nullptr;
 
@@ -50,7 +51,7 @@ void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 	//find if any object collides with the raycast and get the one that is the closest to the raycast origin
 	float minT = INT_MAX;
 	int minIndex = -1;
-	float t;
+	float t = 0;
 	//ortho raycast comes from cursor straight forward along z
 	//perspective raycast comes from camera position in the direction of raycast world
 	for (int i = 0; i < cubes.size(); i++)
@@ -74,7 +75,10 @@ void AppWindow::onLeftMouseDown(const Point& mouse_pos)
 	if (!isPerspective)
 		t = CameraManager::getInstance()->getGameCam()->checkRaycast(raycastWorld + (*cam)->getLocalPosition() + (*cam)->getForwardVector() * (orthoNearPlane), (*cam)->getForwardVector());
 	else
-		t = CameraManager::getInstance()->getGameCam()->checkRaycast((*cam)->getLocalPosition(), raycastWorld);
+	{
+		if(CameraManager::getInstance()->getGameCam() != nullptr)
+			t = CameraManager::getInstance()->getGameCam()->checkRaycast((*cam)->getLocalPosition(), raycastWorld);
+	}
 
 	if (t != -9999)
 	{
@@ -194,6 +198,7 @@ void AppWindow::onCreate()
 {
 	Window::onCreate();
 
+	GameObjectManager::initialize();
 	InputSystem::getInstance()->addListener(this);
 	cam = CameraManager::getInstance()->getActiveCameraAddress();
 	//InputSystem::getInstance()->showCursor(false);
@@ -223,6 +228,8 @@ void AppWindow::onUpdate()
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(width, height);
 
 	update();
+	GameObjectManager::getInstance()->updateAll();
+	GameObjectManager::getInstance()->renderAll(m_cb);
 
 	for (int i = 0; i < cubes.size(); i++)
 	{
@@ -247,6 +254,7 @@ void AppWindow::onDestroy()
 
 	m_swap_chain->release();
 	CameraManager::getInstance()->destroy();
+	GameObjectManager::getInstance()->destroy();
 	GraphicsEngine::getInstance()->destroy();
 }
 
@@ -275,9 +283,11 @@ void AppWindow::createGraphicsWindow()
 	{
 		Vector3D loc = Vector3D(rand() % 200 / 100.0f - 1.0f, rand() % 200 / 100.0f - 1.0f, rand() % 200 / 100.0f - 1.0f);
 		Cube* cubey = new Cube("Cube " + i, loc, Vector3D(1,1,1), Vector3D(0, 1, 1), Vector3D());
-		this->cubes.push_back(cubey);
+		//this->cubes.push_back(cubey);
+
+		GameObjectManager::getInstance()->addObject(cubey);
 	}
-	CameraManager::getInstance()->getGameCam()->initializeMesh();
+	//CameraManager::getInstance()->getGameCam()->initializeMesh();
 	//plane = new Plane("Plane", Vector3D(0, -0.25f, 0), Vector3D(3, 1, 3), Vector3D(1, 1, 0), Vector3D(0,0,0));
 
 	UIManager::initialize(this->m_hwnd);

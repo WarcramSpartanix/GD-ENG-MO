@@ -38,6 +38,11 @@ GameCamera* CameraManager::getGameCam()
 	return m_game_camera;
 }
 
+void CameraManager::setGameCamera(GameCamera* gameCamera)
+{
+	m_game_camera = gameCamera;
+}
+
 void CameraManager::update()
 {
 	if (m_scene_camera != nullptr)
@@ -47,13 +52,13 @@ void CameraManager::update()
 
 	if (m_camera_toggle)
 	{
-		if (m_active_camera == m_scene_camera)
+		if (m_active_camera == m_scene_camera && m_game_camera != nullptr)
 		{
 			m_active_camera = m_game_camera;
 			InputSystem::getInstance()->addListener(m_game_camera);
 			InputSystem::getInstance()->removeListener(m_scene_camera);
 		}
-		else
+		else 
 		{
 			m_active_camera = m_scene_camera;
 			InputSystem::getInstance()->addListener(m_scene_camera);
@@ -65,6 +70,7 @@ void CameraManager::update()
 
 void CameraManager::drawGameCamera(ConstantBuffer* cb)
 {
+	if(m_game_camera != nullptr)
 		m_game_camera->draw(cb);
 	
 }
@@ -116,8 +122,8 @@ CameraManager::CameraManager()
 	m_scene_camera = new Camera("SceneCamera");
 	InputSystem::getInstance()->addListener(m_scene_camera);
 	
-	m_game_camera = new GameCamera("GameCamera", Vector3D(0, 0, -2));
-	InputSystem::getInstance()->removeListener(m_game_camera);
+	/*m_game_camera = new GameCamera("GameCamera", Vector3D(0, 0, -2));
+	InputSystem::getInstance()->removeListener(m_game_camera);*/
 
 	m_active_camera = m_scene_camera;
 

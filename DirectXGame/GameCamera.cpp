@@ -7,10 +7,14 @@
 #include "DeviceContext.h"
 #include "IndexBuffer.h"
 #include "BoundingBox.h"
+#include "CameraManager.h"
 
 GameCamera::GameCamera(std::string name, Vector3D pos) : Camera(name)
 {
 	this->localPosition = pos;
+	this->initializeMesh();
+
+	CameraManager::getInstance()->setGameCamera(this);
 }
 
 GameCamera::~GameCamera()

@@ -54,9 +54,14 @@ void GameObjectManager::updateAll()
 	}
 }
 
-void GameObjectManager::renderAll(int viewportWidth, int viewportHeight, VertexShader* vertexShader, PixelShader* pixelShader)
+void GameObjectManager::renderAll(ConstantBuffer* cb)
 {
-	
+	for (int i = 0; i < this->gameObjectList.size(); i++) {
+		//replace with component update
+		if (this->gameObjectList[i]->isEnabled()) {
+			this->gameObjectList[i]->draw(cb);
+		}
+	}
 }
 
 void GameObjectManager::addObject(AGameObject* gameObject)
