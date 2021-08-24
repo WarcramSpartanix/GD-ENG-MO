@@ -5,6 +5,7 @@
 #include "CameraManager.h"
 #include <iostream>
 #include <random>
+#include "UIManager.h"
 
 AppWindow* AppWindow::sharedInstance = nullptr;
 
@@ -228,6 +229,8 @@ void AppWindow::onUpdate()
 	CameraManager::getInstance()->drawGameCamera(m_cb);
 	//plane->draw(m_cb);
 
+	UIManager::getInstance()->drawAllUI();
+
 	m_swap_chain->present(true);
 
 	m_previous_time = m_current_time;
@@ -273,6 +276,8 @@ void AppWindow::createGraphicsWindow()
 	}
 	CameraManager::getInstance()->getGameCam()->initializeMesh();
 	//plane = new Plane("Plane", Vector3D(0, -0.25f, 0), Vector3D(3, 1, 3), Vector3D(1, 1, 0), Vector3D(0,0,0));
+
+	UIManager::initialize(this->m_hwnd);
 
 	cc.m_time = 0;
 

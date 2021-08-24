@@ -27,7 +27,7 @@ public:
 private:
 	virtual void updateVertexLocations() override;
 
-	Vector3D edges[14];
+	Vector3D edges[13];
 
 	class VertexBuffer* m_vb;
 	class VertexShader* m_vs;
