@@ -171,10 +171,12 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="ProfilerScreen.cpp" />
+    <ClCompile Include="RenderToTexture.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexShader.cpp" />
+    <ClCompile Include="ViewportScreen.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -215,11 +217,13 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="ProfilerScreen.h" />
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="RenderToTexture.h" />
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexShader.h" />
+    <ClInclude Include="ViewportScreen.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,7 @@ public:
 
 	void release();
 	void clearRenderTargetColor(SwapChain* swap_chain, float red, float green, float blue, float alpha);
+	void clearRenderTargetColor(ID3D11RenderTargetView** rtv, ID3D11DepthStencilView* dsv, float red, float green, float blue, float alpha);
 	void setVertexBuffer(VertexBuffer* vertex_buffer);
 	void setIndexBuffer(IndexBuffer* index_buffer);
 

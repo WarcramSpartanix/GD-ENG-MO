@@ -7,6 +7,7 @@
 #include <random>
 #include "UIManager.h"
 #include "GameObjectManager.h"
+#include "ViewportScreen.h"
 
 AppWindow* AppWindow::sharedInstance = nullptr;
 
@@ -220,14 +221,29 @@ void AppWindow::onUpdate()
 
 	InputSystem::getInstance()->update();
 
-	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0.3f, 0.4f, 1);
-
 	RECT rc = this->getClientWindowRect();
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(width, height);
 
 	update();
+
+	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(renderToTex->getRenderTargetView(), this->m_swap_chain->m_dsv, 0, 0.3f, 0.4f, 1);
+
+	GameObjectManager::getInstance()->updateAll();
+	GameObjectManager::getInstance()->renderAll(m_cb);
+
+	for (int i = 0; i < cubes.size(); i++)
+	{
+		this->cubes[i]->update(m_delta_time);
+		this->cubes[i]->draw(m_cb);
+	}
+	CameraManager::getInstance()->drawGameCamera(m_cb);
+
+	UIManager::getInstance()->getViewportUI()->setTex(renderToTex->getShaderResourceView());
+
+	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0.3f, 0.4f, 1);
+	
 	GameObjectManager::getInstance()->updateAll();
 	GameObjectManager::getInstance()->renderAll(m_cb);
 
@@ -252,6 +268,7 @@ void AppWindow::onDestroy()
 {
 	Window::onDestroy();
 
+	renderToTex->Destroy();
 	m_swap_chain->release();
 	CameraManager::getInstance()->destroy();
 	GameObjectManager::getInstance()->destroy();
@@ -290,6 +307,9 @@ void AppWindow::createGraphicsWindow()
 	//CameraManager::getInstance()->getGameCam()->initializeMesh();
 	//plane = new Plane("Plane", Vector3D(0, -0.25f, 0), Vector3D(3, 1, 3), Vector3D(1, 1, 0), Vector3D(0,0,0));
 	UIManager::initialize(this->m_hwnd);
+
+	renderToTex = new RenderToTexture();
+	renderToTex->Initialize(width, height);
 
 	cc.m_time = 0;
 

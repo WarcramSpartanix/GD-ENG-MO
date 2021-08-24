@@ -4,6 +4,7 @@
 #include "MenuScreen.h"
 #include "InspectorScreen.h"
 #include "HierarchyScreen.h"
+#include "ViewportScreen.h"
 
 UIManager* UIManager::sharedInstance = nullptr;
 
@@ -38,6 +39,12 @@ void UIManager::drawAllUI()
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
 
+ViewportScreen* UIManager::getViewportUI()
+{
+    UINames uinames;
+    return (ViewportScreen*)this->uiTable[uinames.VIEWPORT_SCREEN];
+}
+
 UIManager::UIManager(HWND windowHandle)
 {
     IMGUI_CHECKVERSION();
@@ -62,6 +69,10 @@ UIManager::UIManager(HWND windowHandle)
     HierarchyScreen* hiScreen = new HierarchyScreen();
     this->uiTable[uiNames.HIERARCHY_SCREEN] = hiScreen;
     this->uiList.push_back(hiScreen);
+    
+    ViewportScreen* viewport = new ViewportScreen();
+    this->uiTable[uiNames.VIEWPORT_SCREEN] = viewport;
+    this->uiList.push_back(viewport);
 }
 
 UIManager::~UIManager()

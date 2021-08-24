@@ -16,6 +16,7 @@ public:
 	const std::string MENU_SCREEN = "MENU_SCREEN";
 	const std::string INSPECTOR_SCREEN = "INSPECTOR_SCREEN";
 	const std::string HIERARCHY_SCREEN = "HIERARCHY_SCREEN";
+	const std::string VIEWPORT_SCREEN = "VIEWPORT_SCREEN";
 };
 
 class UIManager
@@ -29,6 +30,8 @@ public:
 
 	static const int WINDOW_WIDTH = 1440;
 	static const int WINDOW_HEIGHT = 900;
+
+	class ViewportScreen* getViewportUI();
 
 private:
 	UIManager(HWND windowHandle);

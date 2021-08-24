@@ -14,6 +14,7 @@
 #include "Plane.h"
 #include "Camera.h"
 #include "GameCamera.h"
+#include "RenderToTexture.h"
 
 class AppWindow : public Window, public InputListener
 {
@@ -76,5 +77,7 @@ private:
 
 	Cube* selectedCube = nullptr;
 	GameCamera* selectedCam = nullptr;
+
+	RenderToTexture* renderToTex;
 };
 
