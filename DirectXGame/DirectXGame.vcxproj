@@ -153,6 +153,7 @@
     <ClCompile Include="DeviceContext.cpp" />
     <ClCompile Include="EngineTime.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="HierarchyScreen.cpp" />
     <ClCompile Include="IMGUI\imgui.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="EngineTime.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameObjectConstants.h" />
+    <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="HierarchyScreen.h" />
     <ClInclude Include="IMGUI\imconfig.h" />

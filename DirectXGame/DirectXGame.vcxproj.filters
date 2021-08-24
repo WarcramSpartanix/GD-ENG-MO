@@ -52,6 +52,9 @@
     <Filter Include="IMGUI">
       <UniqueIdentifier>{cea2f395-72d4-433d-86ac-9a46b599203a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObjectManager">
+      <UniqueIdentifier>{19796828-d906-4c20-88cb-59da75aa2467}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -156,6 +159,7 @@
     <ClCompile Include="IMGUI\imgui_widgets.cpp">
       <Filter>IMGUI</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -284,6 +288,7 @@
     <ClInclude Include="IMGUI\imstb_truetype.h">
       <Filter>IMGUI</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

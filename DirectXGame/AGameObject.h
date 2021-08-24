@@ -27,6 +27,9 @@ public:
 
 	std::string getName();
 
+
+	bool isEnabled();
+	void setEnabled(bool flag);
 protected:
 	virtual void updateVertexLocations() = 0;
 
@@ -34,5 +37,6 @@ protected:
 	Vector3D localPosition;
 	Vector3D localScale;
 	Vector3D localRotation;
+	bool enabled = true;
 };
 
