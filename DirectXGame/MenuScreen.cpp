@@ -53,8 +53,15 @@ void MenuScreen::drawUI()
 		if(ImGui::BeginMenu("Start Game"))
 		{
 			if (ImGui::MenuItem("Play"))
-				if (ImGui::MenuItem("Stop"))
-					ImGui::EndMenu();
+			{
+				CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::GAME_CAMERA);
+			}
+			if (ImGui::MenuItem("Stop"))
+			{
+				CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::SCENE_CAMERA);
+			}
+
+			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
 	}

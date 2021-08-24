@@ -7,6 +7,8 @@
 class CameraManager: public InputListener
 {
 public:
+	enum CameraType {SCENE_CAMERA, GAME_CAMERA};
+
 	static CameraManager* getInstance();
 	static void initialize();
 	static void destroy();
@@ -16,6 +18,8 @@ public:
 	Camera** getActiveCameraAddress();
 	GameCamera* getGameCam();
 	void setGameCamera(GameCamera* gameCamera);
+	void setActiveCamera(CameraType type);
+	void switchCamera();
 	void update();
 	void drawGameCamera(ConstantBuffer* cb);
 	Matrix4x4 getCameraViewMatrix();

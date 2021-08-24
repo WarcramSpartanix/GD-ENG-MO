@@ -282,14 +282,13 @@ void AppWindow::createGraphicsWindow()
 	for (int i = 0; i < 3; i++)
 	{
 		Vector3D loc = Vector3D(rand() % 200 / 100.0f - 1.0f, rand() % 200 / 100.0f - 1.0f, rand() % 200 / 100.0f - 1.0f);
-		Cube* cubey = new Cube("Cube " + i, loc, Vector3D(1,1,1), Vector3D(0, 1, 1), Vector3D());
+		Cube* cubey = new Cube("Cube " + std::to_string(i), loc, Vector3D(1,1,1), Vector3D(0, 1, 1), Vector3D());
 		//this->cubes.push_back(cubey);
 
 		GameObjectManager::getInstance()->addObject(cubey);
 	}
 	//CameraManager::getInstance()->getGameCam()->initializeMesh();
 	//plane = new Plane("Plane", Vector3D(0, -0.25f, 0), Vector3D(3, 1, 3), Vector3D(1, 1, 0), Vector3D(0,0,0));
-
 	UIManager::initialize(this->m_hwnd);
 
 	cc.m_time = 0;

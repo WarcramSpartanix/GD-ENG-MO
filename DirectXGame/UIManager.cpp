@@ -54,6 +54,14 @@ UIManager::UIManager(HWND windowHandle)
     MenuScreen* menuScreen = new MenuScreen();
     this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
     this->uiList.push_back(menuScreen);
+
+    InspectorScreen* inspectorScreen = new InspectorScreen();
+    this->uiTable[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
+    this->uiList.push_back(inspectorScreen);
+
+    HierarchyScreen* hiScreen = new HierarchyScreen();
+    this->uiTable[uiNames.HIERARCHY_SCREEN] = hiScreen;
+    this->uiList.push_back(hiScreen);
 }
 
 UIManager::~UIManager()

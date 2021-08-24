@@ -43,6 +43,49 @@ void CameraManager::setGameCamera(GameCamera* gameCamera)
 	m_game_camera = gameCamera;
 }
 
+void CameraManager::setActiveCamera(CameraType type)
+{
+	switch (type)
+	{
+	case CameraManager::SCENE_CAMERA:
+		if(m_active_camera == m_game_camera)
+		{
+			m_active_camera = m_scene_camera;
+			InputSystem::getInstance()->addListener(m_scene_camera);
+			InputSystem::getInstance()->removeListener(m_game_camera);
+		}
+		break;
+	case CameraManager::GAME_CAMERA:
+		if (m_active_camera == m_scene_camera && m_game_camera != nullptr)
+		{
+			m_active_camera = m_game_camera;
+			InputSystem::getInstance()->addListener(m_game_camera);
+			InputSystem::getInstance()->removeListener(m_scene_camera);
+		}
+		break;
+	default:
+		break;
+	}
+
+	if (m_active_camera == m_scene_camera && m_game_camera != nullptr)
+	{
+		m_active_camera = m_game_camera;
+		InputSystem::getInstance()->addListener(m_game_camera);
+		InputSystem::getInstance()->removeListener(m_scene_camera);
+	}
+	else
+	{
+		m_active_camera = m_scene_camera;
+		InputSystem::getInstance()->addListener(m_scene_camera);
+		InputSystem::getInstance()->removeListener(m_game_camera);
+	}
+}
+
+void CameraManager::switchCamera()
+{
+	m_camera_toggle = !m_camera_toggle;
+}
+
 void CameraManager::update()
 {
 	if (m_scene_camera != nullptr)
