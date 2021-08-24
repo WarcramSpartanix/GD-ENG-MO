@@ -67,3 +67,13 @@ std::string AGameObject::getName()
 {
     return this->name;
 }
+
+bool AGameObject::isEnabled()
+{
+    return this->enabled;
+}
+
+void AGameObject::setEnabled(bool flag)
+{
+    this->enabled = flag;
+}
