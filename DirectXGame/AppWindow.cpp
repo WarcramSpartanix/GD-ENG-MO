@@ -7,6 +7,7 @@
 #include <random>
 #include "UIManager.h"
 #include "GameObjectManager.h"
+#include "ViewportScreen.h"
 
 AppWindow* AppWindow::sharedInstance = nullptr;
 
@@ -178,14 +179,6 @@ void AppWindow::update()
 {
 	CameraManager::getInstance()->update();
 
-	m_delta_pos += m_delta_time / 10.0f;
-	if (m_delta_pos > 1.0f)
-		m_delta_pos = 0;
-
-	m_delta_scale += m_delta_time / 0.5f;
-
-	Matrix4x4 temp;
-
 	cc.m_world.setIdentity();
 
 	cc.m_view = (*cam)->getViewMatrix();
@@ -220,14 +213,49 @@ void AppWindow::onUpdate()
 
 	InputSystem::getInstance()->update();
 
-	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0.3f, 0.4f, 1);
-
 	RECT rc = this->getClientWindowRect();
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(width, height);
+	
+	std::vector<Matrix4x4> viewMatrices = CameraManager::getInstance()->getAllCameraViewMatrices();
 
+	//ensure that the renderToTexture classes count matches the number of cameras
+	while (renderToTexes.size() < viewMatrices.size())
+	{
+		RenderToTexture* renderToTex = new RenderToTexture();
+		renderToTex->Initialize(width, height);
+		renderToTexes.push_back(renderToTex);
+	}
+	while (renderToTexes.size() > viewMatrices.size())
+	{
+		renderToTexes.pop_back();
+	}
+	//draw all camera views on viewport windows
+	for (int i = 0; i < viewMatrices.size(); i++)
+	{
+		
+		GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(renderToTexes[i]->getRenderTargetView(), this->m_swap_chain->m_dsv, 0, 0.3f, 0.4f, 1);
+
+		cc.m_view = viewMatrices[i];
+		cc.m_view.invert();
+		m_cb->update(GraphicsEngine::getInstance()->getImmediateDeviceContext(), &cc);
+
+		GameObjectManager::getInstance()->renderAll(m_cb);
+
+		for (int j = 0; j < cubes.size(); j++)
+		{
+			this->cubes[j]->draw(m_cb);
+		}
+		CameraManager::getInstance()->drawGameCamera(m_cb);
+
+		UIManager::getInstance()->getViewportUI(i)->setTex(renderToTexes[i]->getShaderResourceView());
+	}
+	//draw active camera vision
 	update();
+
+	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0.3f, 0.4f, 1);
+	
 	GameObjectManager::getInstance()->updateAll();
 	GameObjectManager::getInstance()->renderAll(m_cb);
 
@@ -252,6 +280,8 @@ void AppWindow::onDestroy()
 {
 	Window::onDestroy();
 
+	for (int i = 0; i < renderToTexes.size(); i++)
+		renderToTexes[i]->Destroy();
 	m_swap_chain->release();
 	CameraManager::getInstance()->destroy();
 	GameObjectManager::getInstance()->destroy();
@@ -290,6 +320,11 @@ void AppWindow::createGraphicsWindow()
 	//CameraManager::getInstance()->getGameCam()->initializeMesh();
 	//plane = new Plane("Plane", Vector3D(0, -0.25f, 0), Vector3D(3, 1, 3), Vector3D(1, 1, 0), Vector3D(0,0,0));
 	UIManager::initialize(this->m_hwnd);
+	UIManager::getInstance()->addViewport();
+
+	RenderToTexture* renderToTex = new RenderToTexture();
+	renderToTex->Initialize(width, height);
+	renderToTexes.push_back(renderToTex);
 
 	cc.m_time = 0;
 

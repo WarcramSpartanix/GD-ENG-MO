@@ -33,8 +33,11 @@ void MenuScreen::drawUI()
 		if (ImGui::BeginMenu("Game Object")) {
 			if (ImGui::MenuItem("Create Camera"))
 			{
-				if(CameraManager::getInstance()->getGameCam() == nullptr)
+				if (CameraManager::getInstance()->getGameCam() == nullptr)
+				{
 					GameObjectManager::getInstance()->addObject(new GameCamera("GameCamera", Vector3D(0, 0, 0)));
+					UIManager::getInstance()->addViewport();
+				}
 			}
 			if (ImGui::MenuItem("Align With View"))
 			{

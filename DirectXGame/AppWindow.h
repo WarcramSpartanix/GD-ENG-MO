@@ -14,6 +14,7 @@
 #include "Plane.h"
 #include "Camera.h"
 #include "GameCamera.h"
+#include "RenderToTexture.h"
 
 class AppWindow : public Window, public InputListener
 {
@@ -67,14 +68,13 @@ private:
 	float m_previous_time;
 	float m_current_time;
 	float m_delta_time;
-	
-	float m_delta_pos;
-	float m_delta_scale;
 
 	bool isPerspective = true;
 	float orthoNearPlane = -4.0f;
 
 	Cube* selectedCube = nullptr;
 	GameCamera* selectedCam = nullptr;
+
+	std::vector<RenderToTexture*> renderToTexes;
 };
 

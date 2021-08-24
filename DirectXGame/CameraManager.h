@@ -24,7 +24,11 @@ public:
 	void drawGameCamera(ConstantBuffer* cb);
 	Matrix4x4 getCameraViewMatrix();
 
+
+	std::vector<Matrix4x4> getAllCameraViewMatrices();
+
 	void alignView();
+
 
 public:
 	virtual void onKeyDown(int key) override;

@@ -30,6 +30,9 @@ public:
 	static const int WINDOW_WIDTH = 1440;
 	static const int WINDOW_HEIGHT = 900;
 
+	class ViewportScreen* getViewportUI(int index);
+	void addViewport();
+
 private:
 	UIManager(HWND windowHandle);
 	~UIManager();
@@ -39,5 +42,7 @@ private:
 
 	std::vector<AUIScreen*> uiList;
 	std::unordered_map<std::string, AUIScreen*> uiTable;
+
+	std::vector<ViewportScreen*> viewportScreens;
 };
 
