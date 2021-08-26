@@ -31,21 +31,8 @@ void MenuScreen::drawUI()
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Game Object")) {
-			if (ImGui::MenuItem("Create Camera"))
-			{
-				if (CameraManager::getInstance()->getGameCam() == nullptr)
-				{
-					GameObjectManager::getInstance()->addObject(new GameCamera("GameCamera", Vector3D(0, 0, 0)));
-					UIManager::getInstance()->addViewport();
-				}
-			}
-			if (ImGui::MenuItem("Align With View"))
-			{
-				if (CameraManager::getInstance()->getGameCam() != nullptr)
-				{
-					CameraManager::getInstance()->alignView();
-				}
-			}
+			if (ImGui::MenuItem("Create Camera")) { onCreateCameraClick(); }
+			if (ImGui::MenuItem("Align With View")) { onClickAlignWithView(); }
 			if (ImGui::BeginMenu("Light")) {
 				if (ImGui::MenuItem("Point Light")) { /* Do stuff */ }
 				ImGui::EndMenu();
@@ -54,17 +41,38 @@ void MenuScreen::drawUI()
 		}
 		if(ImGui::BeginMenu("Start Game"))
 		{
-			if (ImGui::MenuItem("Play"))
-			{
-				CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::GAME_CAMERA);
-			}
-			if (ImGui::MenuItem("Stop"))
-			{
-				CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::SCENE_CAMERA);
-			}
+			if (ImGui::MenuItem("Play")) { onClickPlay(); }
+			if (ImGui::MenuItem("Stop")) { onClickStop(); }
 
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
+	}
+}
+
+void MenuScreen::onCreateCameraClick()
+{
+	if (CameraManager::getInstance()->getGameCam() == nullptr)
+	{
+		GameObjectManager::getInstance()->addObject(new GameCamera("GameCamera", Vector3D(0, 0, 0)));
+		UIManager::getInstance()->addViewport();
+	}
+}
+
+void MenuScreen::onClickPlay()
+{
+	CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::GAME_CAMERA);
+}
+
+void MenuScreen::onClickStop()
+{
+	CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::SCENE_CAMERA);
+}
+
+void MenuScreen::onClickAlignWithView()
+{
+	if (CameraManager::getInstance()->getGameCam() != nullptr)
+	{
+		CameraManager::getInstance()->alignView();
 	}
 }
