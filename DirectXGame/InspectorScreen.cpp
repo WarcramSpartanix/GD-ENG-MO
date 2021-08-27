@@ -17,7 +17,7 @@ InspectorScreen::~InspectorScreen()
 void InspectorScreen::drawUI()
 {
 	ImGui::Begin("Inspector Window");
-	ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 275, 20));
+	ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 200, 20));
 	ImGui::SetWindowSize(ImVec2(250, UIManager::WINDOW_HEIGHT));
 	this->selectedObject = GameObjectManager::getInstance()->getSelectedObject();
 	if (this->selectedObject != NULL) {
@@ -26,10 +26,9 @@ void InspectorScreen::drawUI()
 
 		this->updateTransformDisplays();
 		bool enabled = this->selectedObject->isEnabled();
-		if (ImGui::Checkbox("Enabled", &enabled)) { this->selectedObject->setEnabled(enabled); }
-		if (ImGui::InputFloat3("Position", this->positionDisplay)) { this->onTransformUpdate(); }
-		if (ImGui::InputFloat3("Rotation", this->rotationDisplay)) { this->onTransformUpdate(); }
-		if (ImGui::InputFloat3("Scale", this->scaleDisplay)) { this->onTransformUpdate(); }
+		if (ImGui::InputFloat3("Position", this->Displaiedposition)) { this->onTransformUpdate(); }
+		if (ImGui::InputFloat3("Rotation", this->Displaiedrotation)) { this->onTransformUpdate(); }
+		if (ImGui::InputFloat3("Scale", this->Displaiedscale)) { this->onTransformUpdate(); }
 
 	}
 	else {
@@ -41,26 +40,26 @@ void InspectorScreen::drawUI()
 void InspectorScreen::updateTransformDisplays()
 {
 	Vector3D pos = this->selectedObject->getLocalPosition();
-	this->positionDisplay[0] = pos.getX();
-	this->positionDisplay[1] = pos.getY();
-	this->positionDisplay[2] = pos.getZ();
+	this->Displaiedposition[0] = pos.x;
+	this->Displaiedposition[1] = pos.y;
+	this->Displaiedposition[2] = pos.z;
 
 	Vector3D rot = this->selectedObject->getLocalRotation();
-	this->rotationDisplay[0] = rot.getX();
-	this->rotationDisplay[1] = rot.getY();
-	this->rotationDisplay[2] = rot.getZ();
+	this->Displaiedrotation[0] = rot.x;
+	this->Displaiedrotation[1] = rot.y;
+	this->Displaiedrotation[2] = rot.z;
 
 	Vector3D scale = this->selectedObject->getLocalScale();
-	this->scaleDisplay[0] = scale.getX();
-	this->scaleDisplay[1] = scale.getY();
-	this->scaleDisplay[2] = scale.getZ();
+	this->Displaiedscale[0] = scale.x;
+	this->Displaiedscale[1] = scale.y;
+	this->Displaiedscale[2] = scale.z;
 }
 
 void InspectorScreen::onTransformUpdate()
 {
-	if (this->selectedObject != NULL) {
-		this->selectedObject->setPosition(Vector3D(this->positionDisplay[0], this->positionDisplay[1], this->positionDisplay[2]));
-		this->selectedObject->setRotation(Vector3D(this->rotationDisplay[0], this->rotationDisplay[1], this->rotationDisplay[2]));
-		this->selectedObject->setScale(Vector3D(this->scaleDisplay[0], this->scaleDisplay[1], this->scaleDisplay[2]));
+	if (this->selectedObject != nullptr) {
+		this->selectedObject->setPosition(Vector3D(this->Displaiedposition[0], this->Displaiedposition[1], this->Displaiedposition[2]));
+		this->selectedObject->setRotation(Vector3D(this->Displaiedrotation[0], this->Displaiedrotation[1], this->Displaiedrotation[2]));
+		this->selectedObject->setScale(Vector3D(this->Displaiedscale[0], this->Displaiedscale[1], this->Displaiedscale[2]));
 	}
 }
