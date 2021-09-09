@@ -76,18 +76,6 @@ public:
 		return vec1.x * vec2.x + vec1.y * vec2.y + vec1.z * vec2.z;
 	}
 
-	float getX()
-	{
-		return this->x;
-	}
-	float getY()
-	{
-		return this->y;
-	}
-	float getZ()
-	{
-		return this->z;
-	}
 
 	~Vector3D() 
 	{

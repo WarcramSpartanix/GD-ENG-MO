@@ -16,30 +16,18 @@ InspectorScreen::~InspectorScreen()
 void InspectorScreen::drawUI()
 {
 	ImGui::Begin("Inspector Window");
-	selectedObject = GameObjectManager::getInstance()->getSelectedObject();
-	if (selectedObject != nullptr) {
-		std::string name = selectedObject->getName();
+	ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 200, 20));
+	ImGui::SetWindowSize(ImVec2(250, UIManager::WINDOW_HEIGHT));
+	this->selectedObject = GameObjectManager::getInstance()->getSelectedObject();
+	if (this->selectedObject != NULL) {
+		std::string name = this->selectedObject->getName();
 		ImGui::Text("Selected Object: %s", name.c_str());
 
-		Vector3D position = selectedObject->getLocalPosition();
-		Vector3D rotation = selectedObject->getLocalRotation();
-		Vector3D objectScale = selectedObject->getLocalScale();
-
-		pos[0] = position.x;
-		pos[1] = position.y;
-		pos[2] = position.z;
-		
-		rot[0] = rotation.x;
-		rot[1] = rotation.y;
-		rot[2] = rotation.z;
-		
-		scale[0] = objectScale.x;
-		scale[1] = objectScale.y;
-		scale[2] = objectScale.z;
-
-		if (ImGui::InputFloat3("Position", pos)) { updatePosition(); }
-		if (ImGui::InputFloat3("Rotation", rot)) { updateRotation(); }
-		if (ImGui::InputFloat3("Scale", scale)) { updateScale(); }
+		this->updateTransformDisplays();
+		bool enabled = this->selectedObject->isEnabled();
+		if (ImGui::InputFloat3("Position", this->Displaiedposition)) { this->onTransformUpdate(); }
+		if (ImGui::InputFloat3("Rotation", this->Displaiedrotation)) { this->onTransformUpdate(); }
+		if (ImGui::InputFloat3("Scale", this->Displaiedscale)) { this->onTransformUpdate(); }
 
 	}
 	ImGui::End();
@@ -47,18 +35,27 @@ void InspectorScreen::drawUI()
 
 void InspectorScreen::updatePosition()
 {
-	if (selectedObject != nullptr)
-		selectedObject->setPosition(Vector3D(pos[0], pos[1], pos[2]));
-}
+	Vector3D pos = this->selectedObject->getLocalPosition();
+	this->Displaiedposition[0] = pos.x;
+	this->Displaiedposition[1] = pos.y;
+	this->Displaiedposition[2] = pos.z;
 
-void InspectorScreen::updateRotation()
-{
-	if (selectedObject != nullptr)
-		selectedObject->setRotation(Vector3D(rot[0], rot[1], rot[2]));
+	Vector3D rot = this->selectedObject->getLocalRotation();
+	this->Displaiedrotation[0] = rot.x;
+	this->Displaiedrotation[1] = rot.y;
+	this->Displaiedrotation[2] = rot.z;
+
+	Vector3D scale = this->selectedObject->getLocalScale();
+	this->Displaiedscale[0] = scale.x;
+	this->Displaiedscale[1] = scale.y;
+	this->Displaiedscale[2] = scale.z;
 }
 
 void InspectorScreen::updateScale()
 {
-	if (selectedObject != nullptr)
-		selectedObject->setScale(Vector3D(scale[0], scale[1], scale[2]));
+	if (this->selectedObject != nullptr) {
+		this->selectedObject->setPosition(Vector3D(this->Displaiedposition[0], this->Displaiedposition[1], this->Displaiedposition[2]));
+		this->selectedObject->setRotation(Vector3D(this->Displaiedrotation[0], this->Displaiedrotation[1], this->Displaiedrotation[2]));
+		this->selectedObject->setScale(Vector3D(this->Displaiedscale[0], this->Displaiedscale[1], this->Displaiedscale[2]));
+	}
 }

@@ -54,3 +54,30 @@ void MenuScreen::drawUI()
 		ImGui::EndMainMenuBar();
 	}
 }
+
+void MenuScreen::onCreateCameraClick()
+{
+	if (CameraManager::getInstance()->getGameCam() == nullptr)
+	{
+		GameObjectManager::getInstance()->addObject(new GameCamera("GameCamera", Vector3D(0, 0, 0)));
+		UIManager::getInstance()->addViewport();
+	}
+}
+
+void MenuScreen::onClickPlay()
+{
+	CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::GAME_CAMERA);
+}
+
+void MenuScreen::onClickStop()
+{
+	CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::SCENE_CAMERA);
+}
+
+void MenuScreen::onClickAlignWithView()
+{
+	if (CameraManager::getInstance()->getGameCam() != nullptr)
+	{
+		CameraManager::getInstance()->alignView();
+	}
+}
