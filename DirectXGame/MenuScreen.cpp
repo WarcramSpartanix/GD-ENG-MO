@@ -1,16 +1,11 @@
 #include "MenuScreen.h"
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_dx11.h"
-#include "ImGui/imgui_impl_win32.h"
-#include <iostream>
-#include "GraphicsEngine.h"
-#include "VertexShader.h"
-#include "UIManager.h"
-#include "GameCamera.h"
+#include "IMGUI/imgui.h"
+#include "IMGUI/imgui_impl_dx11.h"
+#include "IMGUI/imgui_impl_win32.h"
 #include "GameObjectManager.h"
-#include "CameraManager.h"
 #include "Cube.h"
-
+#include "Plane.h"
+#include "LoadedMeshObject.h"
 
 MenuScreen::MenuScreen() : AUIScreen("Menu")
 {
@@ -22,28 +17,38 @@ MenuScreen::~MenuScreen()
 
 void MenuScreen::drawUI()
 {
-	if(ImGui::BeginMainMenuBar()) {
+	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("File")) {
-			if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */ }
-			if (ImGui::MenuItem("Save", "Ctrl+S")) { /* Do stuff */ }
-			if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S")) { /* Do stuff */ }
-			if (ImGui::MenuItem("Exit Editor", "Ctrl+W")) {/*Do something */ }
+			if (ImGui::MenuItem("Open..", "Ctrl+O")) {  }
+			if (ImGui::MenuItem("Save", "Ctrl+S")) {  }
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Game Object")) {
-			if (ImGui::MenuItem("Create Camera")) { onCreateCameraClick(); }
-			if (ImGui::MenuItem("Align With View")) { onClickAlignWithView(); }
-			if (ImGui::BeginMenu("Light")) {
-				if (ImGui::MenuItem("Point Light")) { /* Do stuff */ }
-				ImGui::EndMenu();
+			if (ImGui::MenuItem("Cube")) 
+			{ 
+				GameObjectManager::getInstance()->addGameObject(new Cube("Cube", Vector3D(), Vector3D(1, 1, 1), Vector3D(), Vector3D())); 
 			}
-			ImGui::EndMenu();
-		}
-		if(ImGui::BeginMenu("Start Game"))
-		{
-			if (ImGui::MenuItem("Play")) { onClickPlay(); }
-			if (ImGui::MenuItem("Stop")) { onClickStop(); }
-
+			if (ImGui::MenuItem("Plane")) 
+			{
+				GameObjectManager::getInstance()->addGameObject(new Plane("Plane", Vector3D(0,-2,0), Vector3D(15, 1, 15), Vector3D(), Vector3D())); 
+			}
+			if (ImGui::MenuItem("CubeBatch")) 
+			{
+				for (int i = 0; i < 20; i++)
+					GameObjectManager::getInstance()->addGameObject(new Cube("Cube", Vector3D(0,5,0), Vector3D(1, 1, 1), Vector3D(), Vector3D()));
+			}
+			if (ImGui::MenuItem("Teapot")) 
+			{
+				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Teapot", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\teapot.obj"));
+			}
+			if (ImGui::MenuItem("Armadillo")) 
+			{
+				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Armadillo", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\armadillo.obj"));
+			}
+			if (ImGui::MenuItem("Bunny"))
+			{
+				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Bunny", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\bunny.obj"));
+			}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

@@ -1,11 +1,11 @@
 #include "HierarchyScreen.h"
-#include "imGUI/imgui.h"
-#include "imGUI/imgui_impl_dx11.h"
-#include "imGUI/imgui_impl_win32.h"
+#include "IMGUI/imgui.h"
+#include "IMGUI/imgui_impl_dx11.h"
+#include "IMGUI/imgui_impl_win32.h"
 #include "GameObjectManager.h"
-#include "UIManager.h"
+#include <string>
 
-HierarchyScreen::HierarchyScreen() : AUIScreen("HierarchyScreen")
+HierarchyScreen::HierarchyScreen() : AUIScreen("Hierarchy")
 {
 }
 
@@ -32,4 +32,5 @@ void HierarchyScreen::updateObjectList() const
 			GameObjectManager::getInstance()->setSelectedObject(objectName);
 		}
 	}
+	ImGui::End();
 }

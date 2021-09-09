@@ -8,6 +8,7 @@
 #include "IMGUI/imgui_impl_win32.h"
 #include "Window.h"
 #include "AUIScreen.h"
+#include <d3d11.h>
 
 class UINames
 {
@@ -16,6 +17,7 @@ public:
 	const std::string MENU_SCREEN = "MENU_SCREEN";
 	const std::string INSPECTOR_SCREEN = "INSPECTOR_SCREEN";
 	const std::string HIERARCHY_SCREEN = "HIERARCHY_SCREEN";
+	const std::string EDITOR_PLAY_SCREEN = "EDITOR_PLAY_SCREEN";
 };
 
 class UIManager
@@ -27,12 +29,6 @@ public:
 
 	void drawAllUI();
 
-	static const int WINDOW_WIDTH = 1440;
-	static const int WINDOW_HEIGHT = 900;
-
-	class ViewportScreen* getViewportUI(int index);
-	void addViewport();
-
 private:
 	UIManager(HWND windowHandle);
 	~UIManager();
@@ -40,9 +36,14 @@ private:
 	UIManager& operator=(UIManager const&) {};
 	static UIManager* sharedInstance;
 
+	void init();
+	void release();
+
 	std::vector<AUIScreen*> uiList;
 	std::unordered_map<std::string, AUIScreen*> uiTable;
 
-	std::vector<ViewportScreen*> viewportScreens;
+	int my_image_width = 0;
+	int my_image_height = 0;
+	ID3D11ShaderResourceView* my_texture = nullptr;
 };
 

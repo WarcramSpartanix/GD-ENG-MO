@@ -3,10 +3,9 @@
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
 #include "GameObjectManager.h"
-#include "UIManager.h"
 #include "AGameObject.h"
 
-InspectorScreen::InspectorScreen() : AUIScreen("InspectorScreen")
+InspectorScreen::InspectorScreen() : AUIScreen("Inspector")
 {
 }
 
@@ -31,13 +30,10 @@ void InspectorScreen::drawUI()
 		if (ImGui::InputFloat3("Scale", this->Displaiedscale)) { this->onTransformUpdate(); }
 
 	}
-	else {
-		ImGui::Text("No object selected. Select an object first.");
-	}
 	ImGui::End();
 }
 
-void InspectorScreen::updateTransformDisplays()
+void InspectorScreen::updatePosition()
 {
 	Vector3D pos = this->selectedObject->getLocalPosition();
 	this->Displaiedposition[0] = pos.x;
@@ -55,7 +51,7 @@ void InspectorScreen::updateTransformDisplays()
 	this->Displaiedscale[2] = scale.z;
 }
 
-void InspectorScreen::onTransformUpdate()
+void InspectorScreen::updateScale()
 {
 	if (this->selectedObject != nullptr) {
 		this->selectedObject->setPosition(Vector3D(this->Displaiedposition[0], this->Displaiedposition[1], this->Displaiedposition[2]));
