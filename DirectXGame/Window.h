@@ -1,4 +1,5 @@
 #pragma once
+#define NOMINMAX
 #include <Windows.h>
 #include "EngineTime.h"
 
@@ -22,8 +23,8 @@ public:
 	virtual void onFocus();
 	virtual void onKillFocus();
 
-	int const WIDTH = 1440;
-	int const HEIGHT = 900;
+	int const WIDTH = 1024;
+	int const HEIGHT = 768;
 
 protected:
 	HWND m_hwnd;

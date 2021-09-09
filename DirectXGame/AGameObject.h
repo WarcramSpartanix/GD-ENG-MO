@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
 #include "GameObjectConstants.h"
+#include "AComponent.h"
+#include <vector>
 
 class VertexShader;
 class PixelShader;
-class GameObjectManager;
 class AGameObject
 {
 public:
@@ -27,10 +28,15 @@ public:
 	Vector3D getLocalRotation();
 
 	std::string getName();
+	void setName(std::string newName);
 
+	void attachComponent(AComponent* component);
+	void detachComponent(AComponent* component);
 
-	bool isEnabled();
-	void setEnabled(bool flag);
+	AComponent* findComponentByName(std::string name);
+	AComponent* findComponentOfType(AComponent::ComponentType type, std::string name);
+	std::vector<AComponent*> getComponentsOfType(AComponent::ComponentType type);
+
 protected:
 	virtual void updateVertexLocations() = 0;
 
@@ -38,9 +44,9 @@ protected:
 	Vector3D localPosition;
 	Vector3D localScale;
 	Vector3D localRotation;
-	bool enabled = true;
 
-private:
-	friend class GameObjectManager;
+	std::vector<AComponent*> componentList;
+
+	virtual void awake();
 };
 

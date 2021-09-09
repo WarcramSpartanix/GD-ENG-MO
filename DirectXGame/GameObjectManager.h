@@ -1,50 +1,41 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include <string>
-#include <unordered_map>
-#include "AGameObject.h"
-#include "ConstantBuffer.h"
 
+class AGameObject;
+class ConstantBuffer;
 class GameObjectManager
 {
 public:
-	typedef std::string String;
-	typedef std::vector<AGameObject*> List;
-	typedef std::unordered_map<String, AGameObject*> HashTable;
-
-	enum PrimitiveType {
-		CUBE,
-		PLANE,
-		SPHERE
-	};
-
 	static GameObjectManager* getInstance();
 	static void initialize();
 	static void destroy();
 
-	AGameObject* findObjectByName(std::string name);
-	List getAllObjects();
-	int activeObjects();
-	void updateAll();
-	void renderAll(ConstantBuffer* cb);
-	void addObject(AGameObject* gameObject);
-	void createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader);
-	void deleteObject(AGameObject* gameObject);
-	void deleteObjectByName(std::string name);
-	void setSelectedObject(std::string name);
-	void setSelectedObject(AGameObject* gameObject);
+	void addGameObject(AGameObject* gameObject);
+
+	void updateAllGameObjects(float deltaTime);
+	void drawAllGameObjects(ConstantBuffer* cb);
+
+	std::vector<std::string> getGameObjectNames();
+
+	void selectObject(int index);
+	void selectObject(AGameObject* gameObject);
+
 	AGameObject* getSelectedObject();
 
 private:
 	GameObjectManager();
 	~GameObjectManager();
-	GameObjectManager(GameObjectManager const&) {};             // copy constructor is private
-	GameObjectManager& operator=(GameObjectManager const&) {};  // assignment operator is private*/
+	GameObjectManager(GameObjectManager const&) {};
+	GameObjectManager& operator=(GameObjectManager const&) {};
 	static GameObjectManager* sharedInstance;
 
-	HashTable gameObjectMap;
-	List gameObjectList;
+	void init();
+	void release();
 
-	AGameObject* selectedObject = NULL;
+	std::vector<AGameObject*> gameObjectList;
+	std::vector<std::string> gameObjectNames;
+
+	AGameObject* selectedObject = nullptr;
 };
+
