@@ -75,6 +75,11 @@ void UIManager::destroy()
 {
 }
 
+DebugConsoleScreen* UIManager::getDebugScreen()
+{
+    return debugScreen;
+}
+
 void UIManager::drawAllUI()
 {
     ImGui_ImplDX11_NewFrame();
@@ -102,6 +107,11 @@ UIManager::UIManager(HWND windowHandle)
     ImGui_ImplDX11_Init(GraphicsEngine::getInstance()->getRenderSystem()->m_d3d_device, GraphicsEngine::getInstance()->getRenderSystem()->m_imm_context);
 
     UINames uiNames;
+
+    debugScreen = new DebugConsoleScreen();
+    this->uiTable[uiNames.DEBUG_WINDOW] = debugScreen;
+    this->uiList.push_back(debugScreen);
+
     ProfilerScreen* profilerScreen = new ProfilerScreen();
     this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
     this->uiList.push_back(profilerScreen);

@@ -160,6 +160,7 @@
     <ClCompile Include="BoundingSphere.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
+    <ClCompile Include="DebugConsoleScreen.cpp" />
     <ClCompile Include="DeviceContext.cpp" />
     <ClCompile Include="EditorPlayScreen.cpp" />
     <ClCompile Include="EngineBackend.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="BoundingSphere.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="DebugConsoleScreen.h" />
     <ClInclude Include="DeviceContext.h" />
     <ClInclude Include="EditorPlayScreen.h" />
     <ClInclude Include="EngineBackend.h" />
