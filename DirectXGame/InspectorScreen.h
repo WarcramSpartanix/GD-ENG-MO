@@ -9,9 +9,10 @@ public:
 	// Inherited via AUIScreen
 	virtual void drawUI() override;
 
-	float Displaiedposition[3] = { 0.0f, 0.0f, 0.0f };
-	float Displaiedrotation[3] = { 0.0f, 0.0f, 0.0f };
-	float Displaiedscale[3] = { 1.0f, 1.0f, 1.0f };
+private:
+	void updatePosition();
+	void updateRotation();
+	void updateScale();
 
 	class AGameObject* selectedObject;
 

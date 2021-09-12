@@ -6,6 +6,7 @@
 #include "Cube.h"
 #include "Plane.h"
 #include "LoadedMeshObject.h"
+#include "Sphere.h"
 
 MenuScreen::MenuScreen() : AUIScreen("Menu")
 {
@@ -32,6 +33,10 @@ void MenuScreen::drawUI()
 			{
 				GameObjectManager::getInstance()->addGameObject(new Plane("Plane", Vector3D(0,-2,0), Vector3D(15, 1, 15), Vector3D(), Vector3D())); 
 			}
+			if (ImGui::MenuItem("Sphere")) 
+			{
+				GameObjectManager::getInstance()->addGameObject(new Sphere("Sphere", Vector3D(), 1, 5)); 
+			}
 			if (ImGui::MenuItem("CubeBatch")) 
 			{
 				for (int i = 0; i < 20; i++)
@@ -52,32 +57,5 @@ void MenuScreen::drawUI()
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
-	}
-}
-
-void MenuScreen::onCreateCameraClick()
-{
-	if (CameraManager::getInstance()->getGameCam() == nullptr)
-	{
-		GameObjectManager::getInstance()->addObject(new GameCamera("GameCamera", Vector3D(0, 0, 0)));
-		UIManager::getInstance()->addViewport();
-	}
-}
-
-void MenuScreen::onClickPlay()
-{
-	CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::GAME_CAMERA);
-}
-
-void MenuScreen::onClickStop()
-{
-	CameraManager::getInstance()->setActiveCamera(CameraManager::CameraType::SCENE_CAMERA);
-}
-
-void MenuScreen::onClickAlignWithView()
-{
-	if (CameraManager::getInstance()->getGameCam() != nullptr)
-	{
-		CameraManager::getInstance()->alignView();
 	}
 }
