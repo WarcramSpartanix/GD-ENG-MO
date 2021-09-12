@@ -208,6 +208,10 @@
     <ClCompile Include="Sphere.cpp">
       <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
     </ClCompile>
+    <ClCompile Include="DebugConsoleScreen.cpp" />
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -381,6 +385,10 @@
     </ClInclude>
     <ClInclude Include="EditorPlayScreen.h" />
     <ClInclude Include="Sphere.h">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugConsoleScreen.h" />
+    <ClInclude Include="Cylinder.h">
       <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
     </ClInclude>
   </ItemGroup>
