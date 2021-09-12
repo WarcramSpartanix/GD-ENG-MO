@@ -205,6 +205,9 @@
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="EditorPlayScreen.cpp" />
+    <ClCompile Include="Sphere.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -377,6 +380,9 @@
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="EditorPlayScreen.h" />
+    <ClInclude Include="Sphere.h">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

@@ -46,7 +46,7 @@ Matrix4x4 Camera::getViewMatrix()
 }
 
 void Camera::draw(ConstantBuffer* cb)
-{	
+{
 }
 
 void Camera::updateVertexLocations()
@@ -101,7 +101,6 @@ void Camera::onKeyUp(int key)
 
 void Camera::onMouseMove(const Point& delta_mouse_pos)
 {
-
 	if (adjustingCam) {
 		this->setRotation(Vector3D(this->localRotation.x + delta_mouse_pos.y * m_deltaTime * 0.25f,
 			this->localRotation.y + delta_mouse_pos.x * m_deltaTime * 0.25f, this->localRotation.z));
