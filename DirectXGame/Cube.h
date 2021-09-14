@@ -1,5 +1,6 @@
 #pragma once
 #include "AGameObject.h"
+#include "PhysicsComponent.h"
 
 class Cube : public AGameObject
 {
@@ -21,7 +22,8 @@ public:
 	virtual void setRotation(Vector3D rot) override;
 
 	Vector3D* getVertexWorldPositions();
-
+	void restoreState() override;
+	void attachPhysicsComponent();
 	float checkRaycast(Vector3D rayOrigin, Vector3D rayDirection);
 
 private:
@@ -35,7 +37,7 @@ private:
 	float speed = 1;
 
 	Vector3D edges[8];
-
+	PhysicsComponent* component;
 	class VertexBuffer* m_vb;
 	class VertexShader* m_vs;
 	class PixelShader* m_ps;

@@ -1,4 +1,7 @@
 #include "GameObjectManager.h"
+
+#include <iostream>
+
 #include "AGameObject.h"
 
 GameObjectManager* GameObjectManager::sharedInstance = nullptr;
@@ -117,6 +120,26 @@ void GameObjectManager::deleteObject(std::string name)
         if (object == selectedObject)
             selectedObject = nullptr;
         deleteObject(object);
+    }
+}
+
+void GameObjectManager::saveStates()
+{
+    for (int i = 0; i < gameObjectList.size(); i++)
+    {
+        if (this->gameObjectList[i]->stored == false) {
+            this->gameObjectList[i]->stored = true;
+            this->gameObjectList[i]->saveState();
+        }
+    }
+}
+
+void GameObjectManager::restoreStates()
+{
+    for (int i = 0; i < gameObjectList.size(); i++)
+    {
+        this->gameObjectList[i]->restoreState();
+        this->gameObjectList[i]->stored = false;
     }
 }
 

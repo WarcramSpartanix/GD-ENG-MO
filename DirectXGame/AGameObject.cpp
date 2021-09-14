@@ -1,5 +1,7 @@
 #include "AGameObject.h"
 
+#include "History.h"
+
 AGameObject::AGameObject(std::string name)
 {
     this->name = name;
@@ -112,6 +114,20 @@ std::vector<AComponent*> AGameObject::getComponentsOfType(AComponent::ComponentT
             out.push_back(this->componentList[i]);
     }
     return out;
+}
+
+void AGameObject::saveState()
+{
+    this->storedPosition = this->localPosition;
+    this->storedRotation = this->localRotation;
+    this->storedScale = this->localScale;
+}
+
+void AGameObject::restoreState()
+{
+    this->localPosition = this->storedPosition;
+    this->localRotation = this->storedRotation;
+    this->localScale = this->storedScale;
 }
 
 void AGameObject::awake()

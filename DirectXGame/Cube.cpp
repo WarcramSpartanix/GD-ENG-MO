@@ -28,7 +28,7 @@ Cube::Cube(std::string name, Vector3D pos, Vector3D scale, Vector3D color, Vecto
 	this->colors2[6] = Vector3D(1, 1, 1);
 	this->colors2[7] = Vector3D(0, 0, 0);*/
 
-	this->attachComponent(new PhysicsComponent("cubePhysics", this));
+	attachPhysicsComponent();
 	m_wood_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\wood.jpg");
 
 	edges[0] = Vector3D(-this->localScale.x / 2.0f, -this->localScale.y / 2.0f, -this->localScale.z / 2.0f);
@@ -260,6 +260,19 @@ Vector3D* Cube::getVertexWorldPositions()
 	};
 
 	return worldLocations;
+}
+
+void Cube::restoreState()
+{
+	AGameObject::restoreState();
+	this->detachComponent(this->component);
+	this->attachPhysicsComponent();
+}
+
+void Cube::attachPhysicsComponent()
+{
+	this->component = new PhysicsComponent("PhysicsComponent" + this->name, this);
+	this->attachComponent(this->component);
 }
 
 float Cube::checkRaycast(Vector3D rayOrigin, Vector3D rayDirection)

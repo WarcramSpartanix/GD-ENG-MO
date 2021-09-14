@@ -28,6 +28,8 @@ public:
 	void deleteObject(AGameObject* gameObject);
 	void deleteObject(std::string name);
 
+	void saveStates();
+	void restoreStates();
 private:
 	GameObjectManager();
 	~GameObjectManager();

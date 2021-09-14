@@ -38,6 +38,9 @@ public:
 	AComponent* findComponentOfType(AComponent::ComponentType type, std::string name);
 	std::vector<AComponent*> getComponentsOfType(AComponent::ComponentType type);
 
+	void saveState();
+	virtual void restoreState();
+
 protected:
 	virtual void updateVertexLocations() = 0;
 
@@ -45,7 +48,11 @@ protected:
 	Vector3D localPosition;
 	Vector3D localScale;
 	Vector3D localRotation;
-
+	Vector3D storedPosition;
+	Vector3D storedScale;
+	Vector3D storedRotation;
+	Matrix4x4 storedMatrix;
+	bool stored = false;
 	std::vector<AComponent*> componentList;
 
 	virtual void awake();
