@@ -25,15 +25,6 @@
     <Filter Include="GameEngine\InputSystem">
       <UniqueIdentifier>{90d465ab-dc12-41b9-9074-405943e6576f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObjects">
-      <UniqueIdentifier>{554debeb-f0f4-40f5-80a1-b0aad1af990b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObjects\CPPs">
-      <UniqueIdentifier>{e367dce5-1f48-470f-8c01-41cc76251612}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObjects\Headers">
-      <UniqueIdentifier>{acf76313-67e4-46ba-8982-f261bbb33dbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\PhysicsSystem">
       <UniqueIdentifier>{05f8d81a-ac88-4272-b1c6-a53f467a55c9}</UniqueIdentifier>
     </Filter>
@@ -55,16 +46,28 @@
     <Filter Include="GameEngine\GraphicsEngine\ResourceManager\MeshManager">
       <UniqueIdentifier>{744a15c4-966d-4201-920a-b0a8825f3d3e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObjects\Components">
+    <Filter Include="GameEngine\EditorStatesSystem">
+      <UniqueIdentifier>{0d5e6e64-9fa3-4aa3-a2d5-5607ded0a536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObjects">
+      <UniqueIdentifier>{554debeb-f0f4-40f5-80a1-b0aad1af990b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObjects\CPPs">
+      <UniqueIdentifier>{e367dce5-1f48-470f-8c01-41cc76251612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObjects\Headers">
+      <UniqueIdentifier>{acf76313-67e4-46ba-8982-f261bbb33dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GameObjects\Components">
       <UniqueIdentifier>{e65571df-f5dc-4997-83d0-3c15220ebcf4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObjects\Components\CPPs">
+    <Filter Include="GameEngine\GameObjects\Components\CPPs">
       <UniqueIdentifier>{5557f6d9-b01d-4885-8699-e65015854437}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObjects\Components\Headers">
+    <Filter Include="GameEngine\GameObjects\Components\Headers">
       <UniqueIdentifier>{488f963b-b2b0-4911-9d2a-c43719621f38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObjects\ComponentSystems">
+    <Filter Include="GameEngine\GameObjects\ComponentSystems">
       <UniqueIdentifier>{94c9893f-9ae6-4c21-b8a0-d0116a3b1036}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -109,13 +112,13 @@
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="AGameObject.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\CPPs</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\CPPs</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\CPPs</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
       <Filter>GameEngine\PhysicsSystem</Filter>
@@ -184,33 +187,49 @@
       <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
     </ClCompile>
     <ClCompile Include="LoadedMeshObject.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\CPPs</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects</Filter>
+      <Filter>GameEngine\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="AComponent.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\Components\CPPs</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\Components\CPPs</Filter>
     </ClCompile>
     <ClCompile Include="BaseComponentSystem.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\ComponentSystems</Filter>
+      <Filter>GameEngine\GameObjects\ComponentSystems</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsSystem.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\ComponentSystems</Filter>
+      <Filter>GameEngine\GameObjects\ComponentSystems</Filter>
     </ClCompile>
     <ClCompile Include="EngineBackend.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EditorPlayScreen.cpp" />
     <ClCompile Include="Sphere.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\CPPs</Filter>
     </ClCompile>
-    <ClCompile Include="DebugConsoleScreen.cpp" />
+    <ClCompile Include="ActionHistory.cpp">
+      <Filter>GameEngine\EditorStatesSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorAction.cpp">
+      <Filter>GameEngine\EditorStatesSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorPlayScreen.cpp">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorUndoScreen.cpp">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWriter.cpp" />
+    <ClCompile Include="SceneReader.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="Cylinder.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
+      <Filter>GameEngine\GameObjects\CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugConsoleScreen.cpp">
+      <Filter>GameEngine\UISystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,16 +288,16 @@
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectConstants.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects</Filter>
+      <Filter>GameEngine\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Plane.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Headers</Filter>
     </ClInclude>
     <ClInclude Include="AGameObject.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Headers</Filter>
     </ClInclude>
     <ClInclude Include="BoundingBox.h">
       <Filter>GameEngine\PhysicsSystem</Filter>
@@ -363,33 +382,52 @@
       <Filter>GameEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="LoadedMeshObject.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Headers</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects</Filter>
+      <Filter>GameEngine\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="AComponent.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Components\Headers</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Components\Headers</Filter>
     </ClInclude>
     <ClInclude Include="BaseComponentSystem.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\ComponentSystems</Filter>
+      <Filter>GameEngine\GameObjects\ComponentSystems</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsSystem.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\ComponentSystems</Filter>
+      <Filter>GameEngine\GameObjects\ComponentSystems</Filter>
     </ClInclude>
     <ClInclude Include="EngineBackend.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="EditorPlayScreen.h" />
     <ClInclude Include="Sphere.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="DebugConsoleScreen.h" />
+    <ClInclude Include="ActionHistory.h">
+      <Filter>GameEngine\EditorStatesSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorAction.h">
+      <Filter>GameEngine\EditorStatesSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorPlayScreen.h">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorUndoScreen.h">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWriter.h" />
+    <ClInclude Include="SceneReader.h" />
+    <ClInclude Include="StringUtils.h" />
     <ClInclude Include="Cylinder.h">
-      <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
+      <Filter>GameEngine\GameObjects\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugConsoleScreen.h">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imfilebrowser.h">
+      <Filter>IMGUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
