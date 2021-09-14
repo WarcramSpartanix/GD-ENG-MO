@@ -8,6 +8,7 @@
 #include "IndexBuffer.h"
 #include "RenderSystem.h"
 #include "PhysicsComponent.h"
+#include "TextureComponent.h"
 
 Plane::Plane(std::string name, Vector3D pos, Vector3D scale, Vector3D color, Vector3D rot) : AGameObject(name)
 {
@@ -28,7 +29,7 @@ Plane::Plane(std::string name, Vector3D pos, Vector3D scale, Vector3D color, Vec
 	this->attachComponent(comp);
 	comp->getRigidBody()->setType(reactphysics3d::BodyType::STATIC);
 	
-	tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\sand.jpg");
+	m_default_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\White.png");
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
@@ -89,7 +90,14 @@ void Plane::draw(ConstantBuffer* cb)
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setPixelShader(m_ps);
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, tex);
+	std::vector<AComponent*> renderComponentList = getComponentsOfType(AComponent::ComponentType::Renderer);
+	if (renderComponentList.size() > 0)
+	{
+		TextureComponent* texComp = (TextureComponent*)renderComponentList[0];
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, texComp->getTexture());
+	}
+	else
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_default_tex);
 
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);

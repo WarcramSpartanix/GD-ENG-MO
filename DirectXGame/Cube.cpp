@@ -10,6 +10,7 @@
 #include <random>
 #include "RenderSystem.h"
 #include "Texture.h"
+#include "TextureComponent.h"
 #include "PhysicsComponent.h"
 
 Cube::Cube(std::string name, Vector3D pos, Vector3D scale, Vector3D color, Vector3D rot) : AGameObject(name)
@@ -29,7 +30,7 @@ Cube::Cube(std::string name, Vector3D pos, Vector3D scale, Vector3D color, Vecto
 	this->colors2[7] = Vector3D(0, 0, 0);*/
 
 	attachPhysicsComponent();
-	m_wood_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\wood.jpg");
+	m_default_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\White.png");
 
 	edges[0] = Vector3D(-this->localScale.x / 2.0f, -this->localScale.y / 2.0f, -this->localScale.z / 2.0f);
 	edges[1] = Vector3D(-this->localScale.x / 2.0f, this->localScale.y / 2.0f, -this->localScale.z / 2.0f);
@@ -238,7 +239,16 @@ void Cube::draw(ConstantBuffer* cb)
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setPixelShader(m_ps);
 	
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_wood_tex);
+	std::vector<AComponent*> renderComponentList = getComponentsOfType(AComponent::ComponentType::Renderer);
+	if (renderComponentList.size() > 0)
+	{
+		TextureComponent* texComp = (TextureComponent*)renderComponentList[0];
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, texComp->getTexture());
+	}
+	else
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_default_tex);
+
+
 
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
@@ -265,8 +275,6 @@ Vector3D* Cube::getVertexWorldPositions()
 void Cube::restoreState()
 {
 	AGameObject::restoreState();
-	this->detachComponent(this->component);
-	this->attachPhysicsComponent();
 }
 
 void Cube::attachPhysicsComponent()

@@ -45,7 +45,7 @@ private:
 
 	class BoundingBox* collisionBox;
 
-	class Texture* m_wood_tex;
+	class Texture* m_default_tex;
 
 	class Mesh* m_mesh;
 };

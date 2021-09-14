@@ -10,9 +10,11 @@ public:
 
 	void perform(float deltaTime) override;
 	reactphysics3d::RigidBody* getRigidBody();
+	void reset() override;
 
 private:
 	float mass = 1000.0f;
 	reactphysics3d::RigidBody* rigidBody;
+	bool m_isSphere = false;
 };
 

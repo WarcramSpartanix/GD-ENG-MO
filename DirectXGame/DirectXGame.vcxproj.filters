@@ -67,9 +67,6 @@
     <Filter Include="GameEngine\GraphicsEngine\GameObjects\ComponentSystems">
       <UniqueIdentifier>{94c9893f-9ae6-4c21-b8a0-d0116a3b1036}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Storage">
-      <UniqueIdentifier>{4da0baea-b6a1-4941-97ba-c2a01c36c12c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -215,11 +212,8 @@
     <ClCompile Include="Cylinder.cpp">
       <Filter>GameEngine\GraphicsEngine\GameObjects\CPPs</Filter>
     </ClCompile>
-    <ClCompile Include="Storage.cpp">
-      <Filter>GameEngine\GraphicsEngine\Storage</Filter>
-    </ClCompile>
-    <ClCompile Include="History.cpp">
-      <Filter>GameEngine\GraphicsEngine\Storage</Filter>
+    <ClCompile Include="TextureComponent.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\CPPs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,11 +394,8 @@
     <ClInclude Include="Cylinder.h">
       <Filter>GameEngine\GraphicsEngine\GameObjects\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Storage.h">
-      <Filter>GameEngine\GraphicsEngine\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="History.h">
-      <Filter>GameEngine\GraphicsEngine\Storage</Filter>
+    <ClInclude Include="TextureComponent.h">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
