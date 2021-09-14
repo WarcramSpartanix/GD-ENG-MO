@@ -59,6 +59,8 @@ void MenuScreen::drawUI()
 			{
 				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Bunny", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\bunny.obj"));
 			}
+			
+
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

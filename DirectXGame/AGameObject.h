@@ -6,6 +6,7 @@
 
 class VertexShader;
 class PixelShader;
+class GameObjectManager;
 class AGameObject
 {
 public:
@@ -48,5 +49,8 @@ protected:
 	std::vector<AComponent*> componentList;
 
 	virtual void awake();
+
+private:
+	friend class GameObjectManager;
 };
 

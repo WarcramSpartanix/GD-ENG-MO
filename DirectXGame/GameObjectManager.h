@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 class AGameObject;
 class ConstantBuffer;
@@ -23,6 +24,10 @@ public:
 
 	AGameObject* getSelectedObject();
 
+	AGameObject* findObjectByName(std::string name);
+	void deleteObject(AGameObject* gameObject);
+	void deleteObject(std::string name);
+
 private:
 	GameObjectManager();
 	~GameObjectManager();
@@ -35,6 +40,7 @@ private:
 
 	std::vector<AGameObject*> gameObjectList;
 	std::vector<std::string> gameObjectNames;
+	std::unordered_map<std::string, AGameObject*> gameObjectMap;
 
 	AGameObject* selectedObject = nullptr;
 };

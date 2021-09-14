@@ -24,8 +24,21 @@ void GameObjectManager::destroy()
 
 void GameObjectManager::addGameObject(AGameObject* gameObject)
 {
+    if (findObjectByName(gameObject->getName()) != nullptr)
+    {
+        int count = 1;
+        std::string newName = gameObject->getName() + "(" + std::to_string(count) + ")";
+        while (findObjectByName(newName) != nullptr)
+        {
+            count++;
+            newName = gameObject->getName() + "(" + std::to_string(count) + ")";
+        }
+        gameObject->name = newName;
+    }
+
     gameObjectList.push_back(gameObject);
     gameObjectNames.push_back(gameObject->getName());
+    gameObjectMap[gameObject->getName()] = gameObject;
 }
 
 void GameObjectManager::updateAllGameObjects(float deltaTime)
@@ -62,6 +75,49 @@ void GameObjectManager::selectObject(AGameObject* gameObject)
 AGameObject* GameObjectManager::getSelectedObject()
 {
     return selectedObject;
+}
+
+AGameObject* GameObjectManager::findObjectByName(std::string name)
+{
+    if (gameObjectMap[name] != NULL) {
+        return gameObjectMap[name];
+    }
+
+    return nullptr;
+}
+
+void GameObjectManager::deleteObject(AGameObject* gameObject)
+{
+    gameObjectMap.erase(gameObject->getName());
+
+    for (int i = 0; i < gameObjectList.size(); i++) {
+        if (gameObjectList[i] == gameObject) {
+            gameObjectList.erase(gameObjectList.begin() + i);
+            break;
+        }
+    }
+    for (int i = 0; i < gameObjectNames.size(); i++)
+    {
+        if (std::strcmp(gameObjectNames[i].c_str(), gameObject->getName().c_str()) == 0)
+        {
+            gameObjectNames.erase(gameObjectNames.begin() + i);
+            break;
+        }
+    }
+
+    //if (EngineBackend::getInstance()->getMode() == EngineMode::Editor)
+    //    delete gameObject;
+}
+
+void GameObjectManager::deleteObject(std::string name)
+{
+    AGameObject* object = findObjectByName(name);
+
+    if (object != NULL) {
+        if (object == selectedObject)
+            selectedObject = nullptr;
+        deleteObject(object);
+    }
 }
 
 GameObjectManager::GameObjectManager()

@@ -40,6 +40,7 @@ void InspectorScreen::drawUI()
 		if (ImGui::InputFloat3("Position", pos)) { updatePosition(); }
 		if (ImGui::InputFloat3("Rotation", rot)) { updateRotation(); }
 		if (ImGui::InputFloat3("Scale", scale)) { updateScale(); }
+		if (ImGui::Button("Delete", ImVec2(235, 0)))	{ GameObjectManager::getInstance()->deleteObject(selectedObject->getName().c_str());}
 
 	}
 	ImGui::End();
