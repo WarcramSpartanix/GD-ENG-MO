@@ -20,7 +20,8 @@ public:
 	std::vector<Vector3D> getVertexWorldPositions();
 
 	float checkRaycast(Vector3D rayOrigin, Vector3D rayDirection);
-
+	void restoreState() override;
+	void attachPhysicsComponent();
 private:
 	virtual void updateVertexLocations() override;
 

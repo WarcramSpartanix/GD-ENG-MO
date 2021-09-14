@@ -136,6 +136,19 @@ float Sphere::checkRaycast(Vector3D rayOrigin, Vector3D rayDirection)
     return collisionSphere->checkRaycast(rayOrigin, rayDirection);
 }
 
+void Sphere::restoreState()
+{
+	AGameObject::restoreState();
+	this->detachComponent(this->component);
+	this->attachPhysicsComponent();
+}
+
+void Sphere::attachPhysicsComponent()
+{
+	this->component = new PhysicsComponent("PhysicsComponent" + this->name, this);
+	this->attachComponent(this->component);
+}
+
 void Sphere::updateVertexLocations()
 {
 	RenderSystem* graphEngine = GraphicsEngine::getInstance()->getRenderSystem();

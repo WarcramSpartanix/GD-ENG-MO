@@ -178,6 +178,19 @@ void Cylinder::setRotation(Vector3D rotation)
 	collisionBox->setRotation(rotation);
 }
 
+void Cylinder::restoreState()
+{
+	AGameObject::restoreState();
+	this->detachComponent(this->component);
+	this->attachPhysicsComponent();
+}
+
+void Cylinder::attachPhysicsComponent()
+{
+	this->component = new PhysicsComponent("PhysicsComponent" + this->name, this);
+	this->attachComponent(this->component);
+}
+
 void Cylinder::update(float deltaTime)
 {
 }

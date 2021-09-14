@@ -21,6 +21,8 @@ public:
 	virtual void setRotation(float x, float y, float z) override;
 	virtual void setRotation(Vector3D rot) override;
 
+	void restoreState() override;
+	void attachPhysicsComponent();
 	std::vector<Vector3D> getVertexWorldPositions();
 
 	float checkRaycast(Vector3D rayOrigin, Vector3D rayDirection);

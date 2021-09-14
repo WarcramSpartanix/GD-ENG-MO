@@ -4,6 +4,8 @@
 #include "AComponent.h"
 #include <vector>
 
+#include "PhysicsComponent.h"
+
 class VertexShader;
 class PixelShader;
 class GameObjectManager;
@@ -54,7 +56,7 @@ protected:
 	Matrix4x4 storedMatrix;
 	bool stored = false;
 	std::vector<AComponent*> componentList;
-
+	PhysicsComponent* component;
 	virtual void awake();
 
 private:
