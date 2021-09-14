@@ -82,7 +82,14 @@ void AGameObject::attachComponent(AComponent* component)
 
 void AGameObject::detachComponent(AComponent* component)
 {
-    this->componentList.erase(std::remove(componentList.begin(), componentList.end(), component), componentList.end());
+    for (int i = 0; i < componentList.size(); i++)
+    {
+        if (componentList[i] == component)
+        {
+            componentList.erase(componentList.begin() + i);
+        }
+    }
+    delete component;
 }
 
 AComponent* AGameObject::findComponentByName(std::string name)
@@ -116,18 +123,28 @@ std::vector<AComponent*> AGameObject::getComponentsOfType(AComponent::ComponentT
     return out;
 }
 
+std::vector<AComponent*> AGameObject::getAllComponents()
+{
+    return componentList;
+}
+
 void AGameObject::saveState()
 {
-    this->storedPosition = this->localPosition;
-    this->storedRotation = this->localRotation;
-    this->storedScale = this->localScale;
+    this->storedPosition = Vector3D(this->localPosition);
+    this->storedRotation = Vector3D(this->localRotation);
+    this->storedScale = Vector3D(this->localScale);
 }
 
 void AGameObject::restoreState()
 {
-    this->localPosition = this->storedPosition;
-    this->localRotation = this->storedRotation;
-    this->localScale = this->storedScale;
+    setPosition(storedPosition);
+    setRotation(storedRotation);
+    setScale(storedScale);
+
+    for (int i = 0; i < componentList.size(); i++)
+    {
+        componentList[i]->reset();
+    }
 }
 
 void AGameObject::awake()

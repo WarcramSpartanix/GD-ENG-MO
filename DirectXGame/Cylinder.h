@@ -50,7 +50,7 @@ private:
 
 	std::vector<Vector3D> edges;
 
-	class Texture* m_wood_tex;
+	class Texture* m_default_tex;
 
 	class VertexBuffer* m_vb;
 	class VertexShader* m_vs;

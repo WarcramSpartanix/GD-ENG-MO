@@ -37,6 +37,7 @@ public:
 	AComponent* findComponentByName(std::string name);
 	AComponent* findComponentOfType(AComponent::ComponentType type, std::string name);
 	std::vector<AComponent*> getComponentsOfType(AComponent::ComponentType type);
+	std::vector<AComponent*> getAllComponents();
 
 	void saveState();
 	virtual void restoreState();
