@@ -136,6 +136,51 @@ std::vector<AComponent*> AGameObject::getAllComponents()
     return componentList;
 }
 
+void AGameObject::setParent(AGameObject* parentObject)
+{
+    this->parent = parentObject;
+}
+
+void AGameObject::addChild(AGameObject* childObject)
+{
+    this->childList.push_back(childObject);
+}
+
+void AGameObject::removeChild(AGameObject* childObject)
+{
+    int index = -1;
+    for (int i = 0; i < this->childList.size(); i++) {
+        if (this->childList[i] == childObject) {
+            index = i;
+        }
+        
+    }
+
+    if (index != -1) {
+        //std::cout << "Child '" << this->childList[index]->getName() << "' has been removed from Parent '" << this->parent->getName() << "'\n";
+        this->childList.erase(this->childList.begin() + index);
+        
+    }
+}
+
+void AGameObject::removeParent()
+{
+    this->parent = nullptr; 
+}
+
+AGameObject* AGameObject::getParent()
+{
+    if (this->parent != nullptr)
+        return this->parent; 
+        
+    return nullptr;
+}
+
+std::vector<AGameObject*> AGameObject::getAllChildren()
+{
+    return this->childList;
+}
+
 void AGameObject::saveState()
 {
 }

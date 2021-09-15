@@ -20,6 +20,9 @@ void InspectorScreen::drawUI()
 {
 	ImGui::Begin("Inspector Window");
 	selectedObject = GameObjectManager::getInstance()->getSelectedObject();
+
+
+
 	if (selectedObject != nullptr) {
 		std::string name = selectedObject->getName();
 		ImGui::Text("Selected Object: %s", name.c_str());
@@ -73,6 +76,10 @@ void InspectorScreen::drawUI()
 		}
 
 
+		//Set parent
+		updateParent();
+		updateChildren();
+		//
 
 		if (ImGui::Button("Delete Object", ImVec2(235, 0)))	{ GameObjectManager::getInstance()->deleteObject(selectedObject->getName().c_str());}
 
@@ -104,5 +111,80 @@ void InspectorScreen::updateScale()
 	{
 		ActionHistory::getInstance()->recordAction(this->selectedObject, false);
 		selectedObject->setScale(Vector3D(scale[0], scale[1], scale[2]));
+	}
+}
+
+void InspectorScreen::updateParent()
+{
+	if (selectedObject->getParent() == nullptr)
+		s = "None";
+	else
+		s = selectedObject->getParent()->getName();
+
+	ImGui::Text("Current Parent: %s", s.c_str());
+	if (selectedObject->getParent() != nullptr)
+	{
+		if (ImGui::Button("Remove Parent"))
+		{
+			AGameObject* temp = selectedObject->getParent();
+			temp->removeChild(selectedObject);
+			selectedObject->removeParent();
+		}
+	}
+
+	ImGui::InputTextWithHint("", "Parent object's name", parentName, sizeof(parentName)); ImGui::SameLine();
+
+	if (ImGui::Button("Set"))
+	{
+		s.clear(); s = parentName;
+		AGameObject* temp = GameObjectManager::getInstance()->findObjectByName(s);
+		
+
+		//if parent is not null or not the selected objec
+		if (temp != nullptr && temp->getName() != selectedObject->getName() )
+		{
+			bool isFound = false;
+			bool hasChildren = false;
+
+			std::vector<AGameObject*> tempChildren = selectedObject->getAllChildren();
+			if (tempChildren.size() > 0)//check if parent is child of object
+			{
+				hasChildren = true;
+				for (int i = 0; i < tempChildren.size(); i++)
+				{
+					if (tempChildren[i]->getName() == temp->getName())
+						isFound = true;
+				}
+			}
+			
+			// if no children in the first place or has children but parent is not one of its children
+			if (!isFound || !hasChildren)
+			{
+				bool canAddChild = false;
+				if (selectedObject->getParent() == nullptr)
+					canAddChild = true;
+				else if(selectedObject->getParent()->getName() != temp->getName())
+					canAddChild = true;
+
+				if (canAddChild)// just a checker if assigned parent isnt current parent
+				{
+					selectedObject->setParent(temp);
+					temp->addChild(selectedObject);
+				}	
+			}
+		}	
+	}
+}
+
+void InspectorScreen::updateChildren()
+{
+	std::vector<AGameObject*> tempChildren = selectedObject->getAllChildren();
+	ImGui::Text("Current Children: %d", tempChildren.size());
+	if (tempChildren.size() > 0)
+	{
+		for (int i = 0; i < tempChildren.size(); i++)
+		{
+			ImGui::Text("i = %d, %s", i , tempChildren[i]->getName().c_str());
+		}
 	}
 }
