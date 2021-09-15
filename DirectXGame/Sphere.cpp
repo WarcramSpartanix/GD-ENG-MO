@@ -11,6 +11,7 @@
 #include "RenderSystem.h"
 #include "Texture.h"
 #include "PhysicsComponent.h"
+#include "TextureComponent.h"
 
 #define PI 3.14159265
 
@@ -22,6 +23,7 @@ Sphere::Sphere(std::string name, Vector3D pos, float radius, int tessellationLev
 	this->tessellationLevel = tessellationLevel;
 
 	this->attachComponent(new PhysicsComponent("spherePhysics", this, true));
+
 	m_wood_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\blank.jpg");
 
 	generateEdgesAtTessellation(tessellationLevel);
@@ -82,7 +84,14 @@ void Sphere::draw(ConstantBuffer* cb)
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setPixelShader(m_ps);
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_wood_tex);
+	std::vector<AComponent*> renderComponentList = getComponentsOfType(AComponent::ComponentType::Renderer);
+	if (renderComponentList.size() > 0)
+	{
+		TextureComponent* texComp = (TextureComponent*)renderComponentList[0];
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, texComp->getTexture());
+	}
+	else
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_default_tex);
 
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);

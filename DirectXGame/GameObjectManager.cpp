@@ -1,4 +1,7 @@
 #include "GameObjectManager.h"
+
+#include <iostream>
+
 #include "AGameObject.h"
 #include "EditorAction.h"
 #include "ActionHistory.h"

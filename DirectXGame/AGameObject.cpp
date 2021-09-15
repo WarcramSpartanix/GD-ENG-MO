@@ -87,7 +87,14 @@ void AGameObject::attachComponent(AComponent* component)
 
 void AGameObject::detachComponent(AComponent* component)
 {
-    this->componentList.erase(std::remove(componentList.begin(), componentList.end(), component), componentList.end());
+    for (int i = 0; i < componentList.size(); i++)
+    {
+        if (componentList[i] == component)
+        {
+            componentList.erase(componentList.begin() + i);
+        }
+    }
+    delete component;
 }
 
 AComponent* AGameObject::findComponentByName(std::string name)
@@ -119,6 +126,11 @@ std::vector<AComponent*> AGameObject::getComponentsOfType(AComponent::ComponentT
             out.push_back(this->componentList[i]);
     }
     return out;
+}
+
+std::vector<AComponent*> AGameObject::getAllComponents()
+{
+    return componentList;
 }
 
 void AGameObject::saveEditState()

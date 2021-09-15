@@ -27,6 +27,6 @@ private:
 	class PixelShader* m_ps;
 	class IndexBuffer* m_ib;
 
-	class Texture* tex;
+	class Texture* m_default_tex;
 };
 

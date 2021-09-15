@@ -231,6 +231,9 @@
     <ClCompile Include="DebugConsoleScreen.cpp">
       <Filter>GameEngine\UISystem</Filter>
     </ClCompile>
+    <ClCompile Include="TextureComponent.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\CPPs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -428,6 +431,9 @@
     </ClInclude>
     <ClInclude Include="IMGUI\imfilebrowser.h">
       <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureComponent.h">
+      <Filter>GameEngine\GraphicsEngine\GameObjects\Components\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

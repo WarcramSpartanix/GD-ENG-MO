@@ -42,6 +42,38 @@ void InspectorScreen::drawUI()
 		if (ImGui::InputFloat3("Rotation", rot)) { updateRotation(); }
 		if (ImGui::InputFloat3("Scale", scale)) { updateScale(); }
 
+		std::vector<AComponent*> componentList = selectedObject->getComponentsOfType(AComponent::ComponentType::Physics);
+		ImGui::Text("PhysicsComponent"); ImGui::SameLine();
+		if (componentList.size() > 0)
+		{
+			if (ImGui::Button("RemovePhysics"))
+			{
+				selectedObject->detachComponent(componentList[0]);
+			}
+		}
+		else
+		{
+			if (ImGui::Button("AddPhysics")) selectedObject->attachComponent(new PhysicsComponent("PhysicsComponent", selectedObject));
+		}
+
+		componentList = selectedObject->getComponentsOfType(AComponent::ComponentType::Renderer);
+		ImGui::Text("TextureComponent"); ImGui::SameLine();
+		if (componentList.size() > 0)
+		{
+			if (ImGui::Button("RemoveTexture"))
+			{
+				selectedObject->detachComponent(componentList[0]);
+			}
+		}
+		else
+		{
+			if (ImGui::Button("AddTexture")) selectedObject->attachComponent(new TextureComponent("TextureComponent", selectedObject));
+		}
+
+
+
+		if (ImGui::Button("Delete Object", ImVec2(235, 0)))	{ GameObjectManager::getInstance()->deleteObject(selectedObject->getName().c_str());}
+
 	}
 	ImGui::End();
 }
