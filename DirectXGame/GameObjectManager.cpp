@@ -121,6 +121,22 @@ void GameObjectManager::applyEditorAction(EditorAction* action, bool isUndo)
     }
 }
 
+void GameObjectManager::saveStates()
+{
+    for(int i = 0; i < gameObjectList.size(); i ++)
+    {
+        this->gameObjectList[i]->saveEditState();
+    }
+}
+
+void GameObjectManager::restoreStates()
+{
+    for (int i = 0; i < gameObjectList.size(); i++)
+    {
+        this->gameObjectList[i]->restoreEditState();
+    }
+}
+
 GameObjectManager::GameObjectManager()
 {
 }
