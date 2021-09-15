@@ -160,5 +160,11 @@ void AGameObject::restoreEditState()
         this->localRotation = this->lastEditState->getStoredOrientation();
 
         this->lastEditState = nullptr;
+
+        for (int i = 0; i < componentList.size(); i++)
+        {
+            componentList[i]->reset();
+        }
+        updateVertexLocations();
     }
 }
