@@ -30,6 +30,8 @@ public:
 	AGameObject* findObjectByName(std::string name);
 
 	void applyEditorAction(class EditorAction* action, bool isUndo);
+	void saveStates();
+	void restoreStates();
   
 private:
 	GameObjectManager();

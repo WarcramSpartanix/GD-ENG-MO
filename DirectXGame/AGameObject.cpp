@@ -1,4 +1,7 @@
 #include "AGameObject.h"
+
+#include <iostream>
+
 #include "EditorAction.h"
 
 AGameObject::AGameObject(std::string name, AGameObject::PrimitiveType type)
@@ -152,6 +155,7 @@ void AGameObject::restoreEditState()
 {
     if (this->lastEditState != nullptr) {
         this->localPosition = this->lastEditState->getStorePos();
+        std::cout << localPosition.y;
         this->localScale = this->lastEditState->getStoredScale();
         this->localRotation = this->lastEditState->getStoredOrientation();
 
