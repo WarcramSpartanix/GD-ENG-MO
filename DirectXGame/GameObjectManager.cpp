@@ -84,6 +84,13 @@ void GameObjectManager::selectObject(AGameObject* gameObject)
     selectedObject = gameObject;
 }
 
+void GameObjectManager::deleteObject(std::string objectName)
+{
+    AGameObject* gameObject = findObjectByName(objectName);
+    if (gameObject != nullptr)
+        delete gameObject;
+}
+
 AGameObject* GameObjectManager::getSelectedObject()
 {
     return selectedObject;

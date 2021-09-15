@@ -5,6 +5,8 @@
 #include "GameObjectManager.h"
 #include "AGameObject.h"
 #include "ActionHistory.h"
+#include "PhysicsComponent.h"
+#include "TextureComponent.h"
 
 InspectorScreen::InspectorScreen() : AUIScreen("Inspector")
 {

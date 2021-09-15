@@ -133,6 +133,14 @@ std::vector<AComponent*> AGameObject::getAllComponents()
     return componentList;
 }
 
+void AGameObject::saveState()
+{
+}
+
+void AGameObject::restoreState()
+{
+}
+
 void AGameObject::saveEditState()
 {
     if (this->lastEditState == nullptr) {

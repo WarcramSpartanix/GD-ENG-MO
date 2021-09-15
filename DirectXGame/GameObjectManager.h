@@ -23,6 +23,8 @@ public:
 	void selectObject(int index);
 	void selectObject(AGameObject* gameObject);
 
+	void deleteObject(std::string objectName);
+
 	AGameObject* getSelectedObject();
 
 	AGameObject* findObjectByName(std::string name);

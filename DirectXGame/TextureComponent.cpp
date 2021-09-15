@@ -1,11 +1,11 @@
 #include "TextureComponent.h"
 #include "GraphicsEngine.h"
-#include <codecvt>
 
 TextureComponent::TextureComponent(std::string name, AGameObject* owner) : AComponent(name, ComponentType::Renderer, owner)
 {
-	filepath = L"Assets\\Textures\\wood.jpg";
-	texture = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(filepath.c_str());
+	std::wstring path = L"Assets\\Textures\\wood.jpg";
+	filepath = "Assets/Textures/wood.jpg";
+	texture = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(path.c_str());
 }
 
 TextureComponent::~TextureComponent()
@@ -23,8 +23,9 @@ Texture* TextureComponent::getTexture()
 
 void TextureComponent::setPathAndLoad(std::string path)
 {
-	filepath = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(path);
-	texture = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(filepath.c_str());
+	filepath = path;
+	std::wstring str = std::wstring(path.begin(), path.end());
+	texture = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(str.c_str());
 }
 
 void TextureComponent::reset()
@@ -33,7 +34,7 @@ void TextureComponent::reset()
 
 std::string TextureComponent::getPath()
 {
-	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(filepath);
+	return filepath;
 }
 
 

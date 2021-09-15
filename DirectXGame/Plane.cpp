@@ -29,7 +29,7 @@ Plane::Plane(std::string name, Vector3D pos, Vector3D scale, Vector3D color, Vec
 	this->attachComponent(comp);
 	comp->getRigidBody()->setType(reactphysics3d::BodyType::STATIC);
 	
-	tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\blank.jpg");
+	m_default_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\blank.jpg");
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
