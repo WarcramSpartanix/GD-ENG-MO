@@ -3,6 +3,8 @@
 #include <iostream>
 
 #include "AGameObject.h"
+#include "EditorAction.h"
+#include "ActionHistory.h"
 
 GameObjectManager* GameObjectManager::sharedInstance = nullptr;
 
@@ -27,21 +29,23 @@ void GameObjectManager::destroy()
 
 void GameObjectManager::addGameObject(AGameObject* gameObject)
 {
-    if (findObjectByName(gameObject->getName()) != nullptr)
+    if (findObjectByName(gameObject->getName()) != nullptr) 
     {
         int count = 1;
-        std::string newName = gameObject->getName() + "(" + std::to_string(count) + ")";
-        while (findObjectByName(newName) != nullptr)
+        std::string revisedString = gameObject->getName() + " " + "(" + std::to_string(count) + ")";
+        while (findObjectByName(revisedString) != nullptr) 
         {
             count++;
-            newName = gameObject->getName() + "(" + std::to_string(count) + ")";
+            revisedString = gameObject->getName() + " " + "(" + std::to_string(count) + ")";
         }
-        gameObject->name = newName;
+        gameObject->setName(revisedString);
+        gameObjectNames.push_back(revisedString);
     }
-
+    else 
+    {
+        gameObjectNames.push_back(gameObject->getName());
+    }
     gameObjectList.push_back(gameObject);
-    gameObjectNames.push_back(gameObject->getName());
-    gameObjectMap[gameObject->getName()] = gameObject;
 }
 
 void GameObjectManager::updateAllGameObjects(float deltaTime)
@@ -65,6 +69,11 @@ std::vector<std::string> GameObjectManager::getGameObjectNames()
     return gameObjectNames;
 }
 
+std::vector<AGameObject*> GameObjectManager::getAllObjects()
+{
+    return gameObjectList;
+}
+
 void GameObjectManager::selectObject(int index)
 {
     selectedObject = gameObjectList[index];
@@ -75,6 +84,13 @@ void GameObjectManager::selectObject(AGameObject* gameObject)
     selectedObject = gameObject;
 }
 
+void GameObjectManager::deleteObject(std::string objectName)
+{
+    AGameObject* gameObject = findObjectByName(objectName);
+    if (gameObject != nullptr)
+        delete gameObject;
+}
+
 AGameObject* GameObjectManager::getSelectedObject()
 {
     return selectedObject;
@@ -82,64 +98,26 @@ AGameObject* GameObjectManager::getSelectedObject()
 
 AGameObject* GameObjectManager::findObjectByName(std::string name)
 {
-    if (gameObjectMap[name] != NULL) {
-        return gameObjectMap[name];
+    for (int i = 0; i < gameObjectNames.size(); i++)
+    {
+        if (gameObjectNames[i] == name)
+        {
+            return gameObjectList[i];
+        }
     }
-
     return nullptr;
 }
 
-void GameObjectManager::deleteObject(AGameObject* gameObject)
+void GameObjectManager::applyEditorAction(EditorAction* action, bool isUndo)
 {
-    gameObjectMap.erase(gameObject->getName());
-
-    for (int i = 0; i < gameObjectList.size(); i++) {
-        if (gameObjectList[i] == gameObject) {
-            gameObjectList.erase(gameObjectList.begin() + i);
-            break;
-        }
-    }
-    for (int i = 0; i < gameObjectNames.size(); i++)
+    AGameObject* object = this->findObjectByName(action->getOwnerName());
+    if (object != nullptr) 
     {
-        if (std::strcmp(gameObjectNames[i].c_str(), gameObject->getName().c_str()) == 0)
-        {
-            gameObjectNames.erase(gameObjectNames.begin() + i);
-            break;
-        }
-    }
+        ActionHistory::getInstance()->recordAction(object, isUndo);
 
-    //if (EngineBackend::getInstance()->getMode() == EngineMode::Editor)
-    //    delete gameObject;
-}
-
-void GameObjectManager::deleteObject(std::string name)
-{
-    AGameObject* object = findObjectByName(name);
-
-    if (object != NULL) {
-        if (object == selectedObject)
-            selectedObject = nullptr;
-        deleteObject(object);
-    }
-}
-
-void GameObjectManager::saveStates()
-{
-    for (int i = 0; i < gameObjectList.size(); i++)
-    {
-        if (this->gameObjectList[i]->stored == false) {
-            this->gameObjectList[i]->stored = true;
-            this->gameObjectList[i]->saveState();
-        }
-    }
-}
-
-void GameObjectManager::restoreStates()
-{
-    for (int i = 0; i < gameObjectList.size(); i++)
-    {
-        this->gameObjectList[i]->restoreState();
-        this->gameObjectList[i]->stored = false;
+        object->setPosition(action->getStorePos());
+        object->setRotation(action->getStoredOrientation());
+        object->setScale(action->getStoredScale());
     }
 }
 

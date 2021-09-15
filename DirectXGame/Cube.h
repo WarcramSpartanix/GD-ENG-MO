@@ -22,7 +22,7 @@ public:
 	virtual void setRotation(Vector3D rot) override;
 
 	Vector3D* getVertexWorldPositions();
-	void restoreState() override;
+	
 	void attachPhysicsComponent();
 	float checkRaycast(Vector3D rayOrigin, Vector3D rayDirection);
 

@@ -17,7 +17,7 @@ public:
 	std::string getPath();
 
 private:
-	std::wstring filepath;
+	std::string filepath;
 	Texture* texture;
 };
 

@@ -31,7 +31,6 @@ EngineBackend::EditorMode EngineBackend::getMode()
 void EngineBackend::playEditor()
 {
     sharedInstance->editorMode = EngineBackend::EditorMode::PLAY;
-    GameObjectManager::getInstance()->saveStates();
 }
 
 void EngineBackend::pauseEditor()
@@ -42,7 +41,6 @@ void EngineBackend::pauseEditor()
 void EngineBackend::returnToEditor()
 {
     sharedInstance->editorMode = EngineBackend::EditorMode::EDITOR;
-    GameObjectManager::getInstance()->restoreStates();
 }
 
 bool EngineBackend::insideFrameStep()

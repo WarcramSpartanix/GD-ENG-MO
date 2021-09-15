@@ -11,7 +11,7 @@
 #include "PhysicsComponent.h"
 #include "TextureComponent.h"
 
-Cylinder::Cylinder(std::string name, float height, float radius, int sectorCount) : AGameObject(name)
+Cylinder::Cylinder(std::string name, float height, float radius, int sectorCount) : AGameObject(name, AGameObject::PrimitiveType::CYLINDER)
 {
 	colors = Vector3D(0, 1, 1);
 	m_height = height;
