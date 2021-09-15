@@ -15,14 +15,16 @@
 
 #define PI 3.14159265
 
-Sphere::Sphere(std::string name, Vector3D pos, float radius, int tessellationLevel) : AGameObject(name)
+Sphere::Sphere(std::string name, Vector3D pos, float radius, int tessellationLevel) : AGameObject(name, AGameObject::PrimitiveType::SPHERE)
 {
 	this->localPosition = pos;
 	this->radius = radius;
+	this->localScale = Vector3D(radius, radius, radius);
 	this->tessellationLevel = tessellationLevel;
 
 	this->attachComponent(new PhysicsComponent("spherePhysics", this, true));
-	m_default_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\White.png");
+
+	m_wood_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\blank.jpg");
 
 	generateEdgesAtTessellation(tessellationLevel);
 
@@ -112,6 +114,7 @@ void Sphere::setPosition(Vector3D pos)
 void Sphere::setRadius(float newRadius)
 {
 	this->radius = newRadius;
+	this->localScale = Vector3D(radius, radius, radius);
 	collisionSphere->setRadius(newRadius);
 
 	updateVertexLocations();

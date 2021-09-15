@@ -1,13 +1,13 @@
 #include "AGameObject.h"
+#include "EditorAction.h"
 
-#include "History.h"
-
-AGameObject::AGameObject(std::string name)
+AGameObject::AGameObject(std::string name, AGameObject::PrimitiveType type)
 {
     this->name = name;
     this->localPosition = Vector3D();
     this->localRotation = Vector3D();
     this->localScale = Vector3D(1, 1, 1);
+    this->objectType = type;
 }
 
 AGameObject::~AGameObject()
@@ -63,6 +63,11 @@ void AGameObject::setRotation(Vector3D rot)
 Vector3D AGameObject::getLocalRotation()
 {
     return this->localRotation;
+}
+
+AGameObject::PrimitiveType AGameObject::getObjectType()
+{
+    return this->objectType;
 }
 
 std::string AGameObject::getName()
@@ -128,26 +133,20 @@ std::vector<AComponent*> AGameObject::getAllComponents()
     return componentList;
 }
 
-void AGameObject::saveState()
+void AGameObject::saveEditState()
 {
-    this->storedPosition = Vector3D(this->localPosition);
-    this->storedRotation = Vector3D(this->localRotation);
-    this->storedScale = Vector3D(this->localScale);
-}
-
-void AGameObject::restoreState()
-{
-    setPosition(storedPosition);
-    setRotation(storedRotation);
-    setScale(storedScale);
-
-    for (int i = 0; i < componentList.size(); i++)
-    {
-        componentList[i]->reset();
+    if (this->lastEditState == nullptr) {
+        this->lastEditState = new EditorAction(this);
     }
 }
 
-void AGameObject::awake()
+void AGameObject::restoreEditState()
 {
+    if (this->lastEditState != nullptr) {
+        this->localPosition = this->lastEditState->getStorePos();
+        this->localScale = this->lastEditState->getStoredScale();
+        this->localRotation = this->lastEditState->getStoredOrientation();
 
+        this->lastEditState = nullptr;
+    }
 }

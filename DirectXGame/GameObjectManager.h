@@ -18,6 +18,7 @@ public:
 	void drawAllGameObjects(ConstantBuffer* cb);
 
 	std::vector<std::string> getGameObjectNames();
+	std::vector<AGameObject*> getAllObjects();
 
 	void selectObject(int index);
 	void selectObject(AGameObject* gameObject);
@@ -25,11 +26,9 @@ public:
 	AGameObject* getSelectedObject();
 
 	AGameObject* findObjectByName(std::string name);
-	void deleteObject(AGameObject* gameObject);
-	void deleteObject(std::string name);
 
-	void saveStates();
-	void restoreStates();
+	void applyEditorAction(class EditorAction* action, bool isUndo);
+  
 private:
 	GameObjectManager();
 	~GameObjectManager();

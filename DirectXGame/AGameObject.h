@@ -6,11 +6,21 @@
 
 class VertexShader;
 class PixelShader;
-class GameObjectManager;
+class EditorAction;
 class AGameObject
 {
 public:
-	AGameObject(std::string name);
+	enum PrimitiveType {
+		CAMERA,
+		CUBE,
+		PLANE,
+		SPHERE,
+		CAPSULE,
+		CYLINDER
+	};
+
+
+	AGameObject(std::string name, PrimitiveType type);
 	~AGameObject();
 
 	virtual void update(float deltaTime) = 0;
@@ -28,6 +38,8 @@ public:
 	virtual void setRotation(Vector3D rot);
 	Vector3D getLocalRotation();
 
+	PrimitiveType getObjectType();
+
 	std::string getName();
 	void setName(std::string newName);
 
@@ -42,6 +54,9 @@ public:
 	void saveState();
 	virtual void restoreState();
 
+	void saveEditState();
+	void restoreEditState();
+
 protected:
 	virtual void updateVertexLocations() = 0;
 
@@ -49,16 +64,10 @@ protected:
 	Vector3D localPosition;
 	Vector3D localScale;
 	Vector3D localRotation;
-	Vector3D storedPosition;
-	Vector3D storedScale;
-	Vector3D storedRotation;
-	Matrix4x4 storedMatrix;
-	bool stored = false;
+	PrimitiveType objectType;
+
 	std::vector<AComponent*> componentList;
 
-	virtual void awake();
-
-private:
-	friend class GameObjectManager;
+	EditorAction* lastEditState = nullptr;
 };
 
