@@ -30,6 +30,7 @@ public:
 	virtual void setPosition(Vector3D pos);
 	Vector3D getLocalPosition();
 
+
 	virtual void setScale(float x, float y, float z);
 	virtual void setScale(Vector3D scale);
 	Vector3D getLocalScale();

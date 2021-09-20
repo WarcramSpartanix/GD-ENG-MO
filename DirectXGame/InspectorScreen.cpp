@@ -96,6 +96,13 @@ void InspectorScreen::updatePosition()
 	}
 }
 
+void InspectorScreen::updateChildrenPosition(std::vector<AGameObject*> children, Vector3D changeinPosition)
+{
+}
+
+
+
+
 void InspectorScreen::updateRotation()
 {
 	if (selectedObject != nullptr)

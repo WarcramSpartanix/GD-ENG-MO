@@ -19,14 +19,32 @@ AGameObject::~AGameObject()
 
 void AGameObject::setPosition(float x, float y, float z)
 {
+    Vector3D deltaPosition = Vector3D( x,  y,  z) - getLocalPosition();
     this->localPosition = Vector3D(x, y, z);
     updateVertexLocations();
+
+    
+    for (int i = 0; i < childList.size(); i++)
+    {
+        Vector3D childPos = childList[i]->getLocalPosition();
+        childPos = childPos + deltaPosition;
+        childList[i]->setPosition(childPos);
+    }
+
 }
 
 void AGameObject::setPosition(Vector3D pos)
 {
+    Vector3D deltaPosition = pos - getLocalPosition();
     this->localPosition = pos;
     updateVertexLocations();
+
+    for (int i = 0; i < childList.size(); i++)
+    {
+        Vector3D childPos = childList[i]->getLocalPosition();
+        childPos = childPos + deltaPosition;
+        childList[i]->setPosition(childPos);
+    }
 }
 
 Vector3D AGameObject::getLocalPosition()
@@ -36,14 +54,33 @@ Vector3D AGameObject::getLocalPosition()
 
 void AGameObject::setScale(float x, float y, float z)
 {
+    Vector3D deltaScale = Vector3D(x, y, z) - getLocalScale();
+
     this->localScale = Vector3D(x, y, z);
     updateVertexLocations();
+
+    for (int i = 0; i < childList.size(); i++)
+    {
+        Vector3D childScale = childList[i]->getLocalScale();
+        childScale = childScale + deltaScale;
+        childList[i]->setScale(childScale);
+    }
+
 }
 
 void AGameObject::setScale(Vector3D scale)
 {
+    Vector3D deltaScale = scale - getLocalScale();
+
     this->localScale = scale;
     updateVertexLocations();
+
+    for (int i = 0; i < childList.size(); i++)
+    {
+        Vector3D childScale = childList[i]->getLocalScale();
+        childScale = childScale + deltaScale;
+        childList[i]->setScale(childScale);
+    }
 }
 
 Vector3D AGameObject::getLocalScale()
@@ -53,14 +90,51 @@ Vector3D AGameObject::getLocalScale()
 
 void AGameObject::setRotation(float x, float y, float z)
 {
+    Vector3D deltaRotation = Vector3D(x, y, z) - getLocalRotation();
+
     this->localRotation = Vector3D(x, y, z);
     updateVertexLocations();
+
+    for (int i = 0; i < childList.size(); i++)
+    {
+        /*Vector3D finalRotX = Quaternion::rotatePointEuler(Vector3D(1, getLocalPosition().y, getLocalPosition().z), deltaRotation);
+        Vector3D finalRotY = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, 1, getLocalPosition().z), deltaRotation);
+        Vector3D finalRotZ = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, getLocalPosition().y, 1), deltaRotation);
+
+        Vector3D finalRot = finalRotX + finalRotY + finalRotZ;
+
+        Vector3D childRot = childList[i]->getLocalScale();
+        childRot = childRot + deltaRotation;
+        childList[i]->setPosition(finalRot);
+        childList[i]->setRotation(childRot);*/
+    }
 }
 
 void AGameObject::setRotation(Vector3D rot)
 {
+    Vector3D deltaRotation = rot - getLocalRotation();
+
     this->localRotation = rot;
     updateVertexLocations();
+
+
+    for (int i = 0; i < childList.size(); i++)
+    {
+        /*Vector3D originPos = getLocalPosition();
+        this->setPosition(Vector3D(0, 0, 0));
+
+        Vector3D finalRotX = Quaternion::rotatePointEuler(Vector3D(1, getLocalPosition().y, getLocalPosition().z), deltaRotation);
+        Vector3D finalRotY = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, 1, getLocalPosition().z), deltaRotation);
+        Vector3D finalRotZ = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, getLocalPosition().y, 1), deltaRotation);
+
+        Vector3D finalRot = finalRotX + finalRotY + finalRotZ;
+
+        Vector3D childRot = childList[i]->getLocalScale();
+        childRot = childRot + deltaRotation;
+        //childList[i]->setPosition(finalRot);
+        childList[i]->setRotation(childRot);*/
+    }
+
 }
 
 Vector3D AGameObject::getLocalRotation()
@@ -157,7 +231,6 @@ void AGameObject::removeChild(AGameObject* childObject)
     }
 
     if (index != -1) {
-        //std::cout << "Child '" << this->childList[index]->getName() << "' has been removed from Parent '" << this->parent->getName() << "'\n";
         this->childList.erase(this->childList.begin() + index);
         
     }
@@ -213,3 +286,4 @@ void AGameObject::restoreEditState()
         updateVertexLocations();
     }
 }
+
