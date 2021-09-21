@@ -87,8 +87,25 @@ void GameObjectManager::selectObject(AGameObject* gameObject)
 void GameObjectManager::deleteObject(std::string objectName)
 {
     AGameObject* gameObject = findObjectByName(objectName);
+
     if (gameObject != nullptr)
+    {
+        gameObjectMap.erase(gameObject->getName());
+
+        for (int i = 0; i < gameObjectList.size(); i++) {
+            if (gameObjectList[i] == gameObject) {
+                gameObjectList.erase(gameObjectList.begin() + i);
+                gameObjectNames.erase(gameObjectNames.begin() + i);
+                break;
+            }
+        }
+
+        if (gameObject == selectedObject)
+            selectedObject = nullptr;
+
         delete gameObject;
+
+    }
 }
 
 AGameObject* GameObjectManager::getSelectedObject()

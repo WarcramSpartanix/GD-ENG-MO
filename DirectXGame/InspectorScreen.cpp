@@ -74,7 +74,12 @@ void InspectorScreen::drawUI()
 
 
 
-		if (ImGui::Button("Delete Object", ImVec2(235, 0)))	{ GameObjectManager::getInstance()->deleteObject(selectedObject->getName().c_str());}
+		if (ImGui::Button("Delete Object", ImVec2(235, 0)))	
+		{ 
+			GameObjectManager::getInstance()->deleteObject(selectedObject->getName().c_str());
+			selectedObject = nullptr;
+		}
+		
 
 	}
 	ImGui::End();
