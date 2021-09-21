@@ -137,7 +137,8 @@ std::vector<Vector3D> Sphere::getVertexWorldPositions()
 	std::vector<Vector3D> out;
 	for (int i = 0; i < edges.size(); i++)
 	{
-		out.push_back(Quaternion::rotatePointEuler(edges[i], this->localRotation) + this->localPosition);
+		Vector3D temp = Vector3D(edges[i].x * localScale.x, edges[i].y * localScale.y, edges[i].z * localScale.z);
+		out.push_back(Quaternion::rotatePointEuler(temp, this->localRotation) + this->localPosition);
 	}
 
 	AGameObject* nextParent = this->parent;

@@ -12,6 +12,8 @@ public:
 	virtual void setPosition(float x, float y, float z) override;
 	virtual void setPosition(Vector3D pos) override;
 
+
+
 	void setRadius(float newRadius);
 	void setTessellationLevel(int newTessellationLevel);
 
