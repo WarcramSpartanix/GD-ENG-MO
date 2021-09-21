@@ -1,7 +1,7 @@
 # GD-ENG MO : Scene Editor
  
 
-#Members:
+# Members:
 	- Warren Luceñara
 	- Nathan Roleda
 	- Jaso Santiago
@@ -11,7 +11,7 @@
 # Important:
 	- The default branch to be downloaded is "SceneEditor" branch. The "main" branch is deprecated.
 	- The main function is located in main.cpp
-#Instructions:
+# Instructions:
 	- Open the DirectXGame.vcxproj or DirectXGame.sln
 	- Set the C++ Standard language to ISO C++ 17 Standard
 	- Make sure the following project properties have the respective values
