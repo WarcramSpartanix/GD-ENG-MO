@@ -104,6 +104,8 @@ Mesh::Mesh(const wchar_t* fullPath) : Resource(fullPath)
 	m_vertex_buffer = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer(&list_vertices[0], sizeof(VertexMesh), 
 		(UINT)list_vertices.size(), shader_byte_code, size_shader);
 	m_index_buffer = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(&list_indices[0], (UINT)list_indices.size());
+
+	this->scale = Vector3D(1, 1, 1);
 }
 
 Mesh::~Mesh()
