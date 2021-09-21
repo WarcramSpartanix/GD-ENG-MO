@@ -137,6 +137,16 @@ Vector3D* Plane::getVertexWorldPositions()
 		Quaternion::rotatePointEuler(edges[3], this->localRotation) + this->localPosition
 	};
 
+	AGameObject* nextParent = this->parent;
+	while (nextParent != nullptr)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			worldLocations[i] = Quaternion::rotatePointEuler(worldLocations[i], nextParent->getLocalRotation()) + nextParent->getLocalPosition();
+		}
+		nextParent = nextParent->getParent();
+	}
+
 	return worldLocations;
 }
 

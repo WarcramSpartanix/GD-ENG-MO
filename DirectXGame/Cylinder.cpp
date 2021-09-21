@@ -215,6 +215,16 @@ std::vector<Vector3D> Cylinder::getVertexWorldPositions()
 		out.push_back(Quaternion::rotatePointEuler(edges[i], this->localRotation) + this->localPosition);
 	}
 
+	AGameObject* nextParent = this->parent;
+	while (nextParent != nullptr)
+	{
+		for (int i = 0; i < out.size(); i++)
+		{
+			out[i] = Quaternion::rotatePointEuler(out[i], nextParent->getLocalRotation()) + nextParent->getLocalPosition();
+		}
+		nextParent = nextParent->getParent();
+	}
+
 	return out;
 }
 
