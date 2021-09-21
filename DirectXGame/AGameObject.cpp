@@ -280,6 +280,8 @@ void AGameObject::removeChild(AGameObject* childObject)
 
 void AGameObject::removeParent()
 {
+    this->setPosition(Quaternion::rotatePointEuler(this->localPosition, this->parent->getLocalRotation()) + this->parent->getLocalPosition());
+    this->setRotation(Quaternion::toEuler(Quaternion::eulerToQuaternion(this->parent->getLocalRotation()) * Quaternion::eulerToQuaternion(this->localRotation)));
     this->parent = nullptr; 
 }
 
