@@ -10,6 +10,9 @@
 
 InspectorScreen::InspectorScreen() : AUIScreen("Inspector")
 {
+	this->textureBrowserDialog = new ImGui::FileBrowser();
+	this->textureBrowserDialog->SetTitle("Select Texture");
+	this->textureBrowserDialog->SetTypeFilters({ ".png", ".jpg"});
 }
 
 InspectorScreen::~InspectorScreen()
@@ -21,7 +24,7 @@ void InspectorScreen::drawUI()
 	ImGui::Begin("Inspector Window");
 	selectedObject = GameObjectManager::getInstance()->getSelectedObject();
 
-
+	
 
 	if (selectedObject != nullptr) {
 		std::string name = selectedObject->getName();
@@ -69,6 +72,11 @@ void InspectorScreen::drawUI()
 			{
 				selectedObject->detachComponent(componentList[0]);
 			}
+			if (ImGui::Button("SetTexture"))
+			{
+				this->textureComponentTemp = (TextureComponent*)componentList[0];
+				this->textureBrowserDialog->Open();
+			}
 		}
 		else
 		{
@@ -90,6 +98,20 @@ void InspectorScreen::drawUI()
 
 	}
 	ImGui::End();
+
+	this->textureBrowserDialog->Display();
+
+	if (this->textureBrowserDialog->HasSelected())
+	{
+		if (this->textureComponentTemp != nullptr)
+		{
+			this->textureComponentTemp->setPathAndLoad(this->textureBrowserDialog->GetSelected().string());
+		}
+
+		this->textureBrowserDialog->ClearSelected();
+		this->textureBrowserDialog->Close();
+	}
+
 }
 
 void InspectorScreen::updatePosition()

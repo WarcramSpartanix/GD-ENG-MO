@@ -15,6 +15,11 @@ AGameObject::AGameObject(std::string name, AGameObject::PrimitiveType type)
 
 AGameObject::~AGameObject()
 {
+    for (int i = componentList.size() - 1; i >= 0; i--)
+    {
+        delete componentList[i];
+    }
+
 }
 
 void AGameObject::setPosition(float x, float y, float z)

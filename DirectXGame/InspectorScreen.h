@@ -1,6 +1,8 @@
 #pragma once
 #include "AUIScreen.h"
 #include "AGameObject.h"
+#include "IMGUI/imfilebrowser.h"
+#include "TextureComponent.h"
 
 class InspectorScreen : public AUIScreen
 {
@@ -28,5 +30,8 @@ private:
 
 	std::string s{ "None" };
 	char parentName[50];
+
+	ImGui::FileBrowser* textureBrowserDialog;
+	TextureComponent* textureComponentTemp = nullptr;
 };
 
