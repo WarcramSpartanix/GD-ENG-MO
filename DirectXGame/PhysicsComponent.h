@@ -13,7 +13,7 @@ public:
 	void reset() override;
 
 private:
-	float mass = 1000.0f;
+	float mass = 1.0f;
 	reactphysics3d::RigidBody* rigidBody;
 	bool m_isSphere = false;
 };

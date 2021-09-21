@@ -10,6 +10,7 @@
 #include "SceneReader.h"
 #include "SceneWriter.h"
 #include "Cylinder.h"
+#include "TextureComponent.h"
 
 MenuScreen::MenuScreen() : AUIScreen("Menu")
 {
@@ -72,8 +73,20 @@ void MenuScreen::drawUI()
 			}
 			if (ImGui::MenuItem("CubeBatch")) 
 			{
-				for (int i = 0; i < 20; i++)
-					GameObjectManager::getInstance()->addGameObject(new Cube("Cube", Vector3D(0,5,0), Vector3D(1, 1, 1), Vector3D(), Vector3D()));
+				srand(time(0));
+
+				for (int i = 0; i < 100; i++)
+				{
+					Vector3D positionRand = Vector3D(rand() % 10 - 5, rand() % 5, rand() % 10 - 5);
+					AGameObject* obj = new Cube("Cube", positionRand, Vector3D(1, 1, 1), Vector3D(), Vector3D());
+					obj->attachComponent(new TextureComponent("TextureComponent", obj));
+					GameObjectManager::getInstance()->addGameObject(obj);
+				}
+					
+			}
+			if (ImGui::MenuItem("Teapot"))
+			{
+				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Teapot", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\teapot.obj"));
 			}
 			if (ImGui::MenuItem("Lucy")) 
 			{

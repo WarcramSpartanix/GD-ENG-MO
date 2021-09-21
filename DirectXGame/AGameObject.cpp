@@ -120,8 +120,6 @@ void AGameObject::setRotation(float x, float y, float z)
 
 
     setPosition(parentInitPos);
-
-    std::cout << "\n";
 }
 
 void AGameObject::setRotation(Vector3D rot)
@@ -159,8 +157,6 @@ void AGameObject::setRotation(Vector3D rot)
 
     
     setPosition(parentInitPos);
-
-    std::cout << "\n";
 }
 
 Vector3D AGameObject::getLocalRotation()
@@ -299,7 +295,6 @@ void AGameObject::restoreEditState()
 {
     if (this->lastEditState != nullptr) {
         this->localPosition = this->lastEditState->getStorePos();
-        std::cout << localPosition.y;
         this->localScale = this->lastEditState->getStoredScale();
         this->localRotation = this->lastEditState->getStoredOrientation();
 

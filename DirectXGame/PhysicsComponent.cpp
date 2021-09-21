@@ -91,5 +91,13 @@ void PhysicsComponent::reset()
     }
     this->rigidBody->updateMassPropertiesFromColliders();
     this->rigidBody->setMass(this->mass);
-    this->rigidBody->setType(reactphysics3d::BodyType::DYNAMIC);
+
+    if (this->getOwner()->getObjectType() == AGameObject::PrimitiveType::PLANE)
+    {
+        this->rigidBody->setType(reactphysics3d::BodyType::STATIC);
+    }
+    else
+    {
+        this->rigidBody->setType(reactphysics3d::BodyType::DYNAMIC);
+    }
 }
