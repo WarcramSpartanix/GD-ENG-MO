@@ -95,19 +95,28 @@ void AGameObject::setRotation(float x, float y, float z)
     this->localRotation = Vector3D(x, y, z);
     updateVertexLocations();
 
+
+    Vector3D parentInitPos = getLocalPosition();
+    setPosition(0, 0, 0);
+   
     for (int i = 0; i < childList.size(); i++)
     {
-        /*Vector3D finalRotX = Quaternion::rotatePointEuler(Vector3D(1, getLocalPosition().y, getLocalPosition().z), deltaRotation);
-        Vector3D finalRotY = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, 1, getLocalPosition().z), deltaRotation);
-        Vector3D finalRotZ = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, getLocalPosition().y, 1), deltaRotation);
+        Vector3D newPos;
+        Quaternion Rot = Quaternion::eulerToQuaternion(deltaRotation);
+        newPos = Quaternion::rotatePointQuaternion(childList[i]->getLocalPosition(), Rot);
 
-        Vector3D finalRot = finalRotX + finalRotY + finalRotZ;
+        childList[i]->setPosition(newPos);
 
-        Vector3D childRot = childList[i]->getLocalScale();
+        //set rotation
+        Vector3D childRot = childList[i]->getLocalRotation();
         childRot = childRot + deltaRotation;
-        childList[i]->setPosition(finalRot);
-        childList[i]->setRotation(childRot);*/
+        childList[i]->setRotation(childRot);
     }
+
+
+    setPosition(parentInitPos);
+
+    std::cout << "\n";
 }
 
 void AGameObject::setRotation(Vector3D rot)
@@ -118,23 +127,35 @@ void AGameObject::setRotation(Vector3D rot)
     updateVertexLocations();
 
 
+    //std::cout << "x: " << deltaRotation.x << ", y: " << deltaRotation.y << ", z: " << deltaRotation.z << "\n";
+    //std::cout << "x: " << childList[0]->getLocalPosition().x << ", y: " << childList[0]->getLocalPosition().y << ", z: " << childList[0]->getLocalPosition().z << "\n";
+    Vector3D parentInitPos = getLocalPosition();
+    setPosition(0, 0, 0);
+    //std::cout << "x: " << childList[0]->getLocalPosition().x << ", y: " << childList[0]->getLocalPosition().y << ", z: " << childList[0]->getLocalPosition().z << "\n";
     for (int i = 0; i < childList.size(); i++)
-    {
-        /*Vector3D originPos = getLocalPosition();
-        this->setPosition(Vector3D(0, 0, 0));
+    {        
+        Vector3D newPos;
+        Quaternion Rot = Quaternion::eulerToQuaternion(deltaRotation);
+        newPos = Quaternion::rotatePointQuaternion(childList[i]->getLocalPosition(), Rot);
+        
+        //test
+        //std::cout << "x: " << Rot.i << ", y: " << Rot.j << ", z: " << Rot.k << ", w: " << Rot.q << "\n";
+        //std::cout << "x: " << newPos.x << ", y: " << newPos.y << ", z: " << newPos.z <<  "\n";
 
-        Vector3D finalRotX = Quaternion::rotatePointEuler(Vector3D(1, getLocalPosition().y, getLocalPosition().z), deltaRotation);
-        Vector3D finalRotY = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, 1, getLocalPosition().z), deltaRotation);
-        Vector3D finalRotZ = Quaternion::rotatePointEuler(Vector3D(getLocalPosition().x, getLocalPosition().y, 1), deltaRotation);
 
-        Vector3D finalRot = finalRotX + finalRotY + finalRotZ;
 
-        Vector3D childRot = childList[i]->getLocalScale();
+        childList[i]->setPosition(newPos);
+
+        //set rotation
+        Vector3D childRot = childList[i]->getLocalRotation();
         childRot = childRot + deltaRotation;
-        //childList[i]->setPosition(finalRot);
-        childList[i]->setRotation(childRot);*/
+        childList[i]->setRotation(childRot);
     }
 
+    
+    setPosition(parentInitPos);
+
+    std::cout << "\n";
 }
 
 Vector3D AGameObject::getLocalRotation()
