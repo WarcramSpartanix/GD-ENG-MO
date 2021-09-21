@@ -30,6 +30,7 @@ public:
 	virtual void setPosition(Vector3D pos);
 	Vector3D getLocalPosition();
 
+
 	virtual void setScale(float x, float y, float z);
 	virtual void setScale(Vector3D scale);
 	Vector3D getLocalScale();
@@ -51,6 +52,13 @@ public:
 	std::vector<AComponent*> getComponentsOfType(AComponent::ComponentType type);
 	std::vector<AComponent*> getAllComponents();
 
+	void setParent(AGameObject* parentObject);
+	void addChild(AGameObject* childObject);
+	void removeChild(AGameObject* childObject);
+	void removeParent();
+	AGameObject* getParent();
+	std::vector<AGameObject*> getAllChildren();
+
 	void saveState();
 	virtual void restoreState();
 
@@ -69,5 +77,9 @@ protected:
 	std::vector<AComponent*> componentList;
 
 	EditorAction* lastEditState = nullptr;
+
+	//Parenting
+	AGameObject* parent = nullptr;
+	std::vector<AGameObject*> childList;
 };
 

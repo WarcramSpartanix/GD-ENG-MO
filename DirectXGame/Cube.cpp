@@ -269,6 +269,9 @@ Vector3D* Cube::getVertexWorldPositions()
 		Quaternion::rotatePointEuler(edges[7], this->localRotation) + this->localPosition,
 	};
 
+
+
+
 	return worldLocations;
 }
 
