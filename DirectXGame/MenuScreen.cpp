@@ -75,9 +75,9 @@ void MenuScreen::drawUI()
 				for (int i = 0; i < 20; i++)
 					GameObjectManager::getInstance()->addGameObject(new Cube("Cube", Vector3D(0,5,0), Vector3D(1, 1, 1), Vector3D(), Vector3D()));
 			}
-			if (ImGui::MenuItem("Teapot")) 
+			if (ImGui::MenuItem("Lucy")) 
 			{
-				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Teapot", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\teapot.obj"));
+				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Teapot", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\statue.obj"));
 			}
 			if (ImGui::MenuItem("Armadillo")) 
 			{
