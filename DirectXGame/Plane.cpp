@@ -170,4 +170,6 @@ void Plane::updateVertexLocations()
 	GraphicsEngine::getInstance()->getVertexMeshLayoutShaderByteCodeAndSize(&shader_byte_code, &size_shader);
 	delete m_vb;
 	m_vb = graphEngine->createVertexBuffer(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
+
+	AGameObject::updateVertexLocations();
 }

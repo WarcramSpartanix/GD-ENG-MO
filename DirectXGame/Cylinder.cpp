@@ -260,6 +260,7 @@ void Cylinder::updateVertexLocations()
 
 void Cylinder::updateVertexLocations(std::vector<Vector3D> edges)
 {
+	AGameObject::updateVertexLocations();
 }
 
 void Cylinder::buildVerticesAndIndices()

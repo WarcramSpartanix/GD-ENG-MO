@@ -22,10 +22,6 @@ void AGameObject::setPosition(float x, float y, float z)
     Vector3D deltaPosition = Vector3D( x,  y,  z) - getLocalPosition();
     this->localPosition = Vector3D(x, y, z);
     updateVertexLocations();
-
-    for (int i = 0; i < this->childList.size(); i++) {
-        this->childList[i]->updateVertexLocations();
-    }
     
     /*for (int i = 0; i < childList.size(); i++)
     {
@@ -41,10 +37,6 @@ void AGameObject::setPosition(Vector3D pos)
     Vector3D deltaPosition = pos - getLocalPosition();
     this->localPosition = pos;
     updateVertexLocations();
-
-    for (int i = 0; i < this->childList.size(); i++) {
-        this->childList[i]->updateVertexLocations();
-    }
 
     /*for (int i = 0; i < childList.size(); i++)
     {
@@ -66,10 +58,6 @@ void AGameObject::setScale(float x, float y, float z)
     this->localScale = Vector3D(x, y, z);
     updateVertexLocations();
 
-    for (int i = 0; i < this->childList.size(); i++) {
-        this->childList[i]->updateVertexLocations();
-    }
-
     /*for (int i = 0; i < childList.size(); i++)
     {
         Vector3D childScale = childList[i]->getLocalScale();
@@ -86,9 +74,6 @@ void AGameObject::setScale(Vector3D scale)
     this->localScale = scale;
     updateVertexLocations();
 
-    for (int i = 0; i < this->childList.size(); i++) {
-        this->childList[i]->updateVertexLocations();
-    }
 
     /*for (int i = 0; i < childList.size(); i++)
     {
@@ -110,9 +95,6 @@ void AGameObject::setRotation(float x, float y, float z)
     this->localRotation = Vector3D(x, y, z);
     updateVertexLocations();
 
-    for (int i = 0; i < this->childList.size(); i++) {
-        this->childList[i]->updateVertexLocations();
-    }
 
     /*Vector3D parentInitPos = getLocalPosition();
     setPosition(0, 0, 0);
@@ -143,10 +125,6 @@ void AGameObject::setRotation(Vector3D rot)
 
     this->localRotation = rot;
     updateVertexLocations();
-
-    for (int i = 0; i < this->childList.size(); i++) {
-        this->childList[i]->updateVertexLocations();
-    }
 
     //std::cout << "x: " << deltaRotation.x << ", y: " << deltaRotation.y << ", z: " << deltaRotation.z << "\n";
     //std::cout << "x: " << childList[0]->getLocalPosition().x << ", y: " << childList[0]->getLocalPosition().y << ", z: " << childList[0]->getLocalPosition().z << "\n";
@@ -319,7 +297,6 @@ void AGameObject::restoreEditState()
 {
     if (this->lastEditState != nullptr) {
         this->localPosition = this->lastEditState->getStorePos();
-        std::cout << localPosition.y;
         this->localScale = this->lastEditState->getStoredScale();
         this->localRotation = this->lastEditState->getStoredOrientation();
 
@@ -330,6 +307,13 @@ void AGameObject::restoreEditState()
             componentList[i]->reset();
         }
         updateVertexLocations();
+    }
+}
+
+void AGameObject::updateVertexLocations()
+{
+    for (int i = 0; i < this->childList.size(); i++) {
+        this->childList[i]->updateVertexLocations();
     }
 }
 

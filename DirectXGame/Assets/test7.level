@@ -1,0 +1,505 @@
+Plane
+Type: 2
+Position: 0 -2 0
+Rotation: 0 0 0
+Scale: 15 0.1 15
+Cube
+Type: 1
+Position: 1 2 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (1)
+Type: 1
+Position: 3 4 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (2)
+Type: 1
+Position: 0 4 4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (3)
+Type: 1
+Position: -4 0 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (4)
+Type: 1
+Position: 2 4 4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (5)
+Type: 1
+Position: -5 1 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (6)
+Type: 1
+Position: 4 2 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (7)
+Type: 1
+Position: -2 0 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (8)
+Type: 1
+Position: -4 1 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (9)
+Type: 1
+Position: -1 3 4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (10)
+Type: 1
+Position: 2 0 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (11)
+Type: 1
+Position: -3 0 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (12)
+Type: 1
+Position: -2 1 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (13)
+Type: 1
+Position: -1 3 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (14)
+Type: 1
+Position: 3 4 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (15)
+Type: 1
+Position: 4 0 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (16)
+Type: 1
+Position: 0 0 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (17)
+Type: 1
+Position: -1 4 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (18)
+Type: 1
+Position: 1 1 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (19)
+Type: 1
+Position: -3 4 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (20)
+Type: 1
+Position: 1 3 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (21)
+Type: 1
+Position: 0 4 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (22)
+Type: 1
+Position: 1 4 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (23)
+Type: 1
+Position: -2 4 -1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (24)
+Type: 1
+Position: -2 0 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (25)
+Type: 1
+Position: -2 1 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (26)
+Type: 1
+Position: 4 2 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (27)
+Type: 1
+Position: 1 4 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (28)
+Type: 1
+Position: 4 4 -3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (29)
+Type: 1
+Position: -3 1 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (30)
+Type: 1
+Position: -4 0 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (31)
+Type: 1
+Position: -3 2 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (32)
+Type: 1
+Position: 0 3 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (33)
+Type: 1
+Position: -4 3 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (34)
+Type: 1
+Position: -4 0 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (35)
+Type: 1
+Position: -3 2 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (36)
+Type: 1
+Position: -1 1 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (37)
+Type: 1
+Position: -3 4 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (38)
+Type: 1
+Position: 0 4 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (39)
+Type: 1
+Position: 2 2 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (40)
+Type: 1
+Position: -2 2 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (41)
+Type: 1
+Position: -2 4 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (42)
+Type: 1
+Position: -3 2 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (43)
+Type: 1
+Position: -4 1 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (44)
+Type: 1
+Position: 1 3 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (45)
+Type: 1
+Position: 2 2 -3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (46)
+Type: 1
+Position: -1 0 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (47)
+Type: 1
+Position: -5 1 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (48)
+Type: 1
+Position: -3 4 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (49)
+Type: 1
+Position: -5 1 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (50)
+Type: 1
+Position: 0 1 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (51)
+Type: 1
+Position: -1 0 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (52)
+Type: 1
+Position: -3 3 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (53)
+Type: 1
+Position: 3 1 -3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (54)
+Type: 1
+Position: -3 4 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (55)
+Type: 1
+Position: -3 4 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (56)
+Type: 1
+Position: -2 3 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (57)
+Type: 1
+Position: -5 1 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (58)
+Type: 1
+Position: 2 4 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (59)
+Type: 1
+Position: 4 4 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (60)
+Type: 1
+Position: 3 1 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (61)
+Type: 1
+Position: 0 0 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (62)
+Type: 1
+Position: -2 4 -1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (63)
+Type: 1
+Position: -3 0 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (64)
+Type: 1
+Position: 0 0 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (65)
+Type: 1
+Position: -2 1 4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (66)
+Type: 1
+Position: -5 1 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (67)
+Type: 1
+Position: 0 4 -1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (68)
+Type: 1
+Position: -3 2 -1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (69)
+Type: 1
+Position: 0 4 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (70)
+Type: 1
+Position: 4 0 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (71)
+Type: 1
+Position: -5 0 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (72)
+Type: 1
+Position: -3 4 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (73)
+Type: 1
+Position: 3 0 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (74)
+Type: 1
+Position: -5 2 -1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (75)
+Type: 1
+Position: -5 0 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (76)
+Type: 1
+Position: 0 4 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (77)
+Type: 1
+Position: -2 4 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (78)
+Type: 1
+Position: 4 3 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (79)
+Type: 1
+Position: -3 1 -1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (80)
+Type: 1
+Position: -5 2 -5
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (81)
+Type: 1
+Position: -1 1 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (82)
+Type: 1
+Position: -4 4 4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (83)
+Type: 1
+Position: -2 0 -1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (84)
+Type: 1
+Position: 4 4 -2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (85)
+Type: 1
+Position: 4 1 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (86)
+Type: 1
+Position: -3 4 3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (87)
+Type: 1
+Position: -5 4 -3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (88)
+Type: 1
+Position: -4 2 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (89)
+Type: 1
+Position: -1 2 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (90)
+Type: 1
+Position: 2 3 4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (91)
+Type: 1
+Position: 2 0 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (92)
+Type: 1
+Position: -5 4 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (93)
+Type: 1
+Position: 1 4 1
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (94)
+Type: 1
+Position: -2 2 4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (95)
+Type: 1
+Position: -5 0 -3
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (96)
+Type: 1
+Position: 0 3 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (97)
+Type: 1
+Position: 2 4 2
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (98)
+Type: 1
+Position: 1 1 -4
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube (99)
+Type: 1
+Position: 0 2 4
+Rotation: 0 0 0
+Scale: 1 1 1

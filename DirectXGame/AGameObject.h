@@ -66,7 +66,7 @@ public:
 	void restoreEditState();
 
 protected:
-	virtual void updateVertexLocations() = 0;
+	virtual void updateVertexLocations();
 
 	std::string name;
 	Vector3D localPosition;

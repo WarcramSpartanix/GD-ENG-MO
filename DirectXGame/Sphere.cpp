@@ -181,6 +181,8 @@ void Sphere::updateVertexLocations()
 	GraphicsEngine::getInstance()->getVertexMeshLayoutShaderByteCodeAndSize(&shader_byte_code, &size_shader);
 	delete m_vb;
 	m_vb = graphEngine->createVertexBuffer(vertexList, sizeof(vertex), size_list, shader_byte_code, size_shader);
+
+	AGameObject::updateVertexLocations();
 }
 
 void Sphere::generateEdgesAtTessellation(int tessellation)

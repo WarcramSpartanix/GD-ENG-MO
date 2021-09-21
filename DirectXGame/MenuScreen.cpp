@@ -73,7 +73,7 @@ void MenuScreen::drawUI()
 			}
 			if (ImGui::MenuItem("CubeBatch")) 
 			{
-				srand(time(0));
+				srand(1);
 
 				for (int i = 0; i < 100; i++)
 				{

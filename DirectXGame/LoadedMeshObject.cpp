@@ -106,5 +106,5 @@ void LoadedMeshObject::setRotation(Vector3D rot)
 
 void LoadedMeshObject::updateVertexLocations()
 {
-	
+	AGameObject::updateVertexLocations();
 }
