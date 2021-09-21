@@ -47,7 +47,7 @@ Cube (9)
 Type: 1
 Position: 1 1 -5
 Rotation: 0 0 0
-Scale: 5 5 0.3
+Scale: 15 5 0.3
 Cube (10)
 Type: 1
 Position: 0.5 2 -4.8
@@ -62,7 +62,7 @@ Plane
 Type: 2
 Position: 0 -1.5 0
 Rotation: 0 0 0
-Scale: 15 0.1 20
+Scale: 20 0.1 20
 Cube (12)
 Type: 1
 Position: 0.7 -0.5 -4
@@ -80,22 +80,22 @@ Rotation: 0 0 0
 Scale: 4.5 0.3 1
 Cube (15)
 Type: 1
-Position: 5.5 1 0
+Position: 4.2 -0.5 0
 Rotation: 0 0 0
-Scale: 4 5 0.5
+Scale: 1.5 2 0.5
 Cube (16)
 Type: 1
-Position: -3.5 1 0
+Position: -2 -0.5 0
 Rotation: 0 0 0
-Scale: 4 5 0.5
+Scale: 1.5 2 0.5
 Cube (17)
 Type: 1
-Position: -5 1 5
+Position: -6 1 5
 Rotation: 0 0 0
 Scale: 1 5 10
 Cube (18)
 Type: 1
-Position: 7 1 5
+Position: 8 1 5
 Rotation: 0 0 0
 Scale: 1 5 10
 Cylinder
@@ -122,19 +122,49 @@ Cube (19)
 Type: 1
 Position: 1 2.5 10
 Rotation: 0 0 0
-Scale: 11 2 1
+Scale: 15 2 1
 Cube (20)
 Type: 1
-Position: -2.5 0 10
+Position: -3.5 0 10
 Rotation: 0 0 0
-Scale: 4 3 1
+Scale: 6 3 1
 Cube (21)
 Type: 1
-Position: 4.5 0 10
+Position: 5.5 0 10
 Rotation: 0 0 0
-Scale: 4 3 1
+Scale: 6 3 1
 Cube (22)
 Type: 1
 Position: 0 4 0
 Rotation: 0 0 0
 Scale: 20 1 20
+Cube (23)
+Type: 1
+Position: -6 1 -2
+Rotation: 0 0 0
+Scale: 1 5 6
+Cube (24)
+Type: 1
+Position: 8 1 -2
+Rotation: 0 0 0
+Scale: 1 5 6
+Cube (25)
+Type: 1
+Position: -3.5 2 0
+Rotation: 0 0 0
+Scale: 4 3 0.5
+Cube (26)
+Type: 1
+Position: -5 -0.5 0
+Rotation: 0 0 0
+Scale: 1.5 2 0.5
+Cube (27)
+Type: 1
+Position: 7 -0.5 0
+Rotation: 0 0 0
+Scale: 1.5 2 0.5
+Cube (28)
+Type: 1
+Position: 5.5 2 0
+Rotation: 0 0 0
+Scale: 4 3 0.5
