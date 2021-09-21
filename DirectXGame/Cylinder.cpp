@@ -141,7 +141,6 @@ void Cylinder::setScale(Vector3D newScale)
 			newScaleList.push_back(Vector3D(edges[i].x / localScale.x, edges[i].y / localScale.y, edges[i].z / localScale.z));
 		}
 
-
 		//apply new scale
 		for (size_t i = 0; i < edges.size(); i++)
 		{
