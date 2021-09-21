@@ -16,7 +16,7 @@ LoadedMeshObject::LoadedMeshObject(std::string name, Vector3D pos, Vector3D scal
 	this->localScale = scale;
 	this->localRotation = rot;
 
-	m_wood_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\brick.png");
+	m_wood_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\White.png");
 	m_mesh = GraphicsEngine::getInstance()->getMeshManager()->creatMeshFromFile(objPath);
 
 	RenderSystem* graphEngine = GraphicsEngine::getInstance()->getRenderSystem();

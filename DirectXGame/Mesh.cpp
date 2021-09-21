@@ -18,7 +18,8 @@ Mesh::Mesh(const wchar_t* fullPath) : Resource(fullPath)
 	std::string warn;
 	std::string err;
 
-	std::string inputFile(((std::wstring)fullPath).begin(), ((std::wstring)fullPath).end());
+	std::wstring filename = (std::wstring) fullPath;
+	std::string inputFile(filename.begin(), filename.end());
 	bool res = tinyobj::LoadObj(&attribs, &shapes, &materials, &warn, &err, inputFile.c_str());
 
 	if (!err.empty())

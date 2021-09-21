@@ -77,7 +77,7 @@ void MenuScreen::drawUI()
 			}
 			if (ImGui::MenuItem("Lucy")) 
 			{
-				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Teapot", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\statue.obj"));
+				GameObjectManager::getInstance()->addGameObject(new LoadedMeshObject("Lucy", Vector3D(), Vector3D(1, 1, 1), Vector3D(), L"Assets\\Meshes\\statue.obj"));
 			}
 			if (ImGui::MenuItem("Armadillo")) 
 			{
